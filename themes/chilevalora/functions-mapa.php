@@ -268,7 +268,7 @@ function habilidades_json($data) {
 
 		            if($i==0){
 		            	$datos_value['id'] = $id_region;	
-		            	//$datos_value[$name.'|'.$uri_occupation] = $value;
+		            	$datos_value[$name.'|'.$uri_occupation] = $value;
 
 		            }else{
 
