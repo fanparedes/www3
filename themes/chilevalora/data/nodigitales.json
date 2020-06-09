@@ -1,0 +1,95 @@
+{
+ "title": "Profesiones no digitales",
+ "values": [
+  {
+   "id": 1,
+   "Comercial": 10,
+   "Ingeniero": 20,
+   "Conductor": 20
+  },
+  {
+   "id": 2,
+   "Comercial": 200,
+   "Ingeniero": 300,
+   "Conductor": 200
+  },
+  {
+   "id": 3,
+   "Comercial": 2000,
+   "Ingeniero": 300,
+   "Conductor": 20
+  },
+  {
+   "id": 4,
+   "Comercial": 200,
+   "Ingeniero": 3000,
+   "Conductor": 20
+  },
+  {
+   "id": 5,
+   "Comercial": 20000,
+   "Ingeniero": 30000,
+   "Conductor": 2000
+  },
+  {
+   "id": 6,
+   "Comercial": 20,
+   "Ingeniero": 30,
+   "Conductor": 20
+  },
+  {
+   "id": 7,
+   "Comercial": 320,
+   "Ingeniero": 30,
+   "Conductor": 20
+  },
+  {
+   "id": 8,
+   "Comercial": 2330,
+   "Ingeniero": 30,
+   "Conductor": 20
+  },
+  {
+   "id": 9,
+   "Comercial": 20,
+   "Ingeniero": 3055,
+   "Conductor": 20
+  },
+  {
+   "id": 10,
+   "Comercial": 20,
+   "Ingeniero": 3055,
+   "Conductor": 20
+  },
+  {
+   "id": 11,
+   "Comercial": 20,
+   "Ingeniero": 306,
+   "Conductor": 20
+  },
+  {
+   "id": 12,
+   "Comercial": 206,
+   "Ingeniero": 30,
+   "Conductor": 20
+  },
+  {
+   "id": 13,
+   "Comercial": 20,
+   "Ingeniero": 30,
+   "Conductor": 20
+  },
+  {
+   "id": 14,
+   "Comercial": 209,
+   "Ingeniero": 30,
+   "Conductor": 20
+  },
+  {
+   "id": 15,
+   "Comercial": 20,
+   "Ingeniero": 30,
+   "Conductor": 20
+  }
+ ]
+}

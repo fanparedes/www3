@@ -1,0 +1,103 @@
+{
+ "title": "Profesiones digitales",
+ "values": [
+  {
+   "id": 1,
+   "Desarrollador de software": 10,
+   "Administrador de sistemas": 20,
+   "Desarrollador Web y multimedia": 100,
+   "Profesional TIC": 50,
+   "Digital Project Manager": 12,
+   "Consultor TIC": 2,
+   "Desarrollador frontend": 120,
+   "Desarrollador móvil": 56,
+   "Especialista en ciberseguridad": 4,
+   "Diseñador / Adm. de bases de datos": 58
+  },
+  {
+   "id": 2,
+   "Desarrollador de software": 200,
+   "Administrador de sistemas": 300,
+   "Desarrollador móvil": 200,
+   "Me la saco de la manga": 200
+  },
+  {
+   "id": 3,
+   "Desarrollador de software": 2000,
+   "Administrador de sistemas": 300,
+   "Desarrollador móvil": 20
+  },
+  {
+   "id": 4,
+   "Desarrollador de software": 3000,
+   "Administrador de sistemas": 2000,
+   "Desarrollador móvil": 20
+  },
+  {
+   "id": 5,
+   "Desarrollador de software": 3000,
+   "Administrador de sistemas": 2000,
+   "Desarrollador móvil": 2000
+  },
+  {
+   "id": 6,
+   "Desarrollador de software": 20,
+   "Administrador de sistemas": 30,
+   "Desarrollador móvil": 20
+  },
+  {
+   "id": 7,
+   "Desarrollador de software": 320,
+   "Administrador de sistemas": 30,
+   "Desarrollador móvil": 20
+  },
+  {
+   "id": 8,
+   "Desarrollador de software": 2330,
+   "Administrador de sistemas": 30,
+   "Desarrollador móvil": 20
+  },
+  {
+   "id": 9,
+   "Desarrollador de software": 2000,
+   "Administrador de sistemas": 100,
+   "Desarrollador móvil": 20
+  },
+  {
+   "id": 10,
+   "Desarrollador de software": 200,
+   "Administrador de sistemas": 55,
+   "Desarrollador móvil": 20
+  },
+  {
+   "id": 11,
+   "Desarrollador de software": 200,
+   "Administrador de sistemas": 36,
+   "Desarrollador móvil": 20
+  },
+  {
+   "id": 12,
+   "Desarrollador de software": 206,
+   "Administrador de sistemas": 30,
+   "Desarrollador móvil": 20
+  },
+  {
+   "id": 13,
+   "Desarrollador de software": 20,
+   "Administrador de sistemas": 30,
+   "Desarrollador móvil": 20
+  },
+  {
+   "id": 14,
+   "Desarrollador de software": 209,
+   "Administrador de sistemas": 30,
+   "Desarrollador móvil": 20
+  },
+  {
+   "id": 15,
+   "Desarrollador de software": 20,
+   "Administrador de sistemas": 30,
+   "Desarrollador móvil": 20
+  }
+ ]
+}

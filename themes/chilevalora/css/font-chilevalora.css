@@ -1,0 +1,357 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "chile-valora";
+  src:url("../webfonts/chile-valora.eot");
+  src:url("../webfonts/chile-valora.eot?#iefix") format("embedded-opentype"),
+    url("../webfonts/chile-valora.woff") format("woff"),
+    url("../webfonts/chile-valora.ttf") format("truetype"),
+    url("../webfonts/chile-valora.svg#chile-valora") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  font-family: "chile-valora" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="iconcl-"]:before,
+[class*=" iconcl-"]:before {
+  font-family: "chile-valora" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.iconcl-aspa:before {
+  content: "\61";
+}
+.iconcl-automatizacion:before {
+  content: "\62";
+}
+.iconcl-automatizacion-alza:before {
+  content: "\63";
+}
+.iconcl-automatizacion-alza-xl:before {
+  content: "\64";
+}
+.iconcl-automatizacion-xl:before {
+  content: "\65";
+}
+.iconcl-brecha-habilidades:before {
+  content: "\66";
+}
+.iconcl-brecha-habilidades-xl:before {
+  content: "\67";
+}
+.iconcl-canales-reclutamiento:before {
+  content: "\68";
+}
+.iconcl-canales-reclutamiento-xl:before {
+  content: "\69";
+}
+.iconcl-cesantia:before {
+  content: "\6a";
+}
+.iconcl-cesantia-alza:before {
+  content: "\6b";
+}
+.iconcl-cesantia-alza-xl:before {
+  content: "\6c";
+}
+.iconcl-cesantia-baja:before {
+  content: "\6d";
+}
+.iconcl-cesantia-baja-xl:before {
+  content: "\6e";
+}
+.iconcl-cesantia-xl:before {
+  content: "\6f";
+}
+.iconcl-contratos:before {
+  content: "\70";
+}
+.iconcl-contratos-alza:before {
+  content: "\71";
+}
+.iconcl-contratos-alza-xl:before {
+  content: "\72";
+}
+.iconcl-contratos-baja:before {
+  content: "\73";
+}
+.iconcl-contratos-baja-xl:before {
+  content: "\74";
+}
+.iconcl-contratos-xl:before {
+  content: "\75";
+}
+.iconcl-crecimiento:before {
+  content: "\76";
+}
+.iconcl-crecimiento-xl:before {
+  content: "\77";
+}
+.iconcl-decrecimiento:before {
+  content: "\78";
+}
+.iconcl-decrecimiento-xl:before {
+  content: "\79";
+}
+.iconcl-dificultad-ocupacion:before {
+  content: "\7a";
+}
+.iconcl-dificultad-ocupacion-xl:before {
+  content: "\41";
+}
+.iconcl-elegir-fecha:before {
+  content: "\42";
+}
+.iconcl-empleados:before {
+  content: "\43";
+}
+.iconcl-empleados-alza:before {
+  content: "\44";
+}
+.iconcl-empleados-alza-xl:before {
+  content: "\45";
+}
+.iconcl-empleados-baja:before {
+  content: "\46";
+}
+.iconcl-empleados-baja-xl:before {
+  content: "\47";
+}
+.iconcl-empleados-xl:before {
+  content: "\48";
+}
+.iconcl-habilidades:before {
+  content: "\49";
+}
+.iconcl-habilidades-xl:before {
+  content: "\4a";
+}
+.iconcl-ingresos:before {
+  content: "\4b";
+}
+.iconcl-ingresos-alza:before {
+  content: "\4c";
+}
+.iconcl-ingresos-alza-xl:before {
+  content: "\4d";
+}
+.iconcl-ingresos-baja:before {
+  content: "\4e";
+}
+.iconcl-ingresos-baja-xl:before {
+  content: "\4f";
+}
+.iconcl-ingresos-xl:before {
+  content: "\50";
+}
+.iconcl-migrante:before {
+  content: "\51";
+}
+.iconcl-migrantes-alza:before {
+  content: "\52";
+}
+.iconcl-migrantes-alza-xl:before {
+  content: "\53";
+}
+.iconcl-migrantes-baja:before {
+  content: "\54";
+}
+.iconcl-migrantes-baja-xl:before {
+  content: "\55";
+}
+.iconcl-migrantes-xl:before {
+  content: "\56";
+}
+.iconcl-mujeres:before {
+  content: "\57";
+}
+.iconcl-mujeres-alza:before {
+  content: "\58";
+}
+.iconcl-mujeres-alza-xl:before {
+  content: "\59";
+}
+.iconcl-mujeres-baja:before {
+  content: "\5a";
+}
+.iconcl-mujeres-baja-xl:before {
+  content: "\30";
+}
+.iconcl-mujeres-xl:before {
+  content: "\31";
+}
+.iconcl-nuevos-trabajadores:before {
+  content: "\32";
+}
+.iconcl-nuevos-trabajadores-alza-xl:before {
+  content: "\33";
+}
+.iconcl-nuevos-trabajadores-baja:before {
+  content: "\34";
+}
+.iconcl-nuevos-trabajadores-baja-xl:before {
+  content: "\35";
+}
+.iconcl-nuevos-trabajadores-xl:before {
+  content: "\36";
+}
+.iconcl-nuevos-trabajdores-alza:before {
+  content: "\37";
+}
+.iconcl-ocupacion:before {
+  content: "\38";
+}
+.iconcl-ocupacion-alza:before {
+  content: "\39";
+}
+.iconcl-ocupacion-alza-xl:before {
+  content: "\21";
+}
+.iconcl-ocupacion-baja:before {
+  content: "\22";
+}
+.iconcl-ocupacion-baja-xl:before {
+  content: "\23";
+}
+.iconcl-ocupacion-xl:before {
+  content: "\24";
+}
+.iconcl-podium:before {
+  content: "\25";
+}
+.iconcl-podium-xl:before {
+  content: "\26";
+}
+.iconcl-puesto1:before {
+  content: "\27";
+}
+.iconcl-puesto1-xl:before {
+  content: "\28";
+}
+.iconcl-puesto2:before {
+  content: "\29";
+}
+.iconcl-puesto2-xl:before {
+  content: "\2a";
+}
+.iconcl-puesto3:before {
+  content: "\2b";
+}
+.iconcl-puesto3-xl:before {
+  content: "\2c";
+}
+.iconcl-raton:before {
+  content: "\2d";
+}
+.iconcl-raton-xl:before {
+  content: "\2e";
+}
+.iconcl-region-antofagasta:before {
+  content: "\2f";
+}
+.iconcl-region-araucania:before {
+  content: "\3a";
+}
+.iconcl-region-arica:before {
+  content: "\3b";
+}
+.iconcl-region-atacama:before {
+  content: "\3c";
+}
+.iconcl-region-aysen:before {
+  content: "\3d";
+}
+.iconcl-region-biobio:before {
+  content: "\3e";
+}
+.iconcl-region-coquimbo:before {
+  content: "\3f";
+}
+.iconcl-region-lagos:before {
+  content: "\40";
+}
+.iconcl-region-magallanes-y-antartica:before {
+  content: "\5b";
+}
+.iconcl-region-maule:before {
+  content: "\5d";
+}
+.iconcl-region-metropolitana:before {
+  content: "\5e";
+}
+.iconcl-region-nuble:before {
+  content: "\5f";
+}
+.iconcl-region-ohiggins:before {
+  content: "\60";
+}
+.iconcl-region-rios:before {
+  content: "\7b";
+}
+.iconcl-region-tarapaca:before {
+  content: "\7c";
+}
+.iconcl-region-valparaiso:before {
+  content: "\7d";
+}
+.iconcl-rotacion-alza:before {
+  content: "\7e";
+}
+.iconcl-rotacion-alza-xl:before {
+  content: "\5c";
+}
+.iconcl-rotacion-baja:before {
+  content: "\e000";
+}
+.iconcl-rotacion-baja-xl:before {
+  content: "\e001";
+}
+.iconcl-rotacion-intersectorial:before {
+  content: "\e002";
+}
+.iconcl-rotacion-intersectorial-xl:before {
+  content: "\e003";
+}
+.iconcl-curso-fechas:before {
+  content: "\e004";
+}
+.iconcl-curso-horas:before {
+  content: "\e005";
+}
+.iconcl-curso-online:before {
+  content: "\e006";
+}
+.iconcl-curso-precio:before {
+  content: "\e007";
+}
+.iconcl-almacena:before {
+  content: "\e008";
+}
+.iconcl-informa:before {
+  content: "\e009";
+}
+.iconcl-procesa:before {
+  content: "\e00a";
+}
+.iconcl-birrete-xl:before {
+  content: "\e00b";
+}

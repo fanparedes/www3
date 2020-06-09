@@ -1,0 +1,54 @@
+/* Home */
+.bloque-carousel-home {
+				   
+   /* position: relative;
+    width: 100%;
+    height: 668px;
+    background: url(<?php echo $imagen_lg; ?>) no-repeat center top #304c70;
+    background-size: cover;
+    color: #304c70;
+    margin: 0 auto 44px;
+    max-width: 1480px;
+    
+    position: relative;
+    background: url(<?php echo $imagen_lg; ?>) no-repeat center top #304c70;
+    color: #304c70;
+    margin: 0 auto 44px;
+        */
+    position: relative;
+    width: 100%;
+    /*height: 668px;*/
+    background: url(<?php echo $imagen_lg; ?>) no-repeat center top #304c70;
+    background-size: cover;
+    color: #304c70;
+    margin: 0 auto 44px;
+
+}
+.bloque-carousel-home .content{
+    position: relative;
+    z-index: 999;
+}
+.bloque-carousel-home .results{
+    margin: 0px 20px;
+    background-color: #fff;
+    border: 0;
+}
+.bloque-carousel-home .results ul{
+    padding: 0;
+    list-style: none;
+    padding: 10px 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.bloque-carousel-home .results ul li a{
+    display: block;
+    padding: 10px 5px;
+
+}
+@media (max-width: 767px) {
+  .bloque-carousel-home {
+        height: 611px;
+        background-image: url(<?php echo $imagen_xs; ?>);
+        padding: 40px 0;
+        margin-bottom: 44px;
+    }
+}

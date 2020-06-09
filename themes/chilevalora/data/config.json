@@ -1,0 +1,83 @@
+{
+  "colors": {
+   "text": {
+      "negative": "#ffffff",
+      "low": "#c9cbd1",
+      "medium": "#383d4c",
+      "high": "#9397a2",
+      "top": "#000d23"
+    },
+    "jobs": "#00edff",
+    "skills": "#ffee02",
+    "nodigital": "#00FF99",
+    "range": [
+      "#f8ebf0",
+      "#db91ae",
+      "#be366b"
+    ],
+    "background": "#0a162a",
+    "button": "rgba(255, 255, 255, 0.2)",
+    "select": {
+      "background": "#f5f5f6",
+      "trigger": "rgba(255, 255, 255, 0.08)",
+      "color": "#00475d",
+      "selected": "rgba(0, 198, 215, 0.2)"
+    },
+    "charts": {
+      "palette": ["#00ff99", "#00edff", "#feee00", "#a0e231", "#1f78b4", "#edad08", "#38a6a5", "#33a02c", "#960097", "#ff7f00", "#cab2d6", "#fdd6b9"],
+      "text": "#ffffff",
+      "textBackground": "rgba(0, 13, 35, 1)"
+    }
+  },
+  "country": "Chile",
+  "mapFile": "chile",
+  "published": "1000000",
+  "flipMapX": false,
+  "flipMapY": true,
+  "mapHeightDescktop": 600,
+  "mapHeightMobile": 300,
+  "text": "Ofertas publicadas",
+  "date": "Fuentes: Infojobs y tecnoempleo.com · Oct–Dic 2019",
+  "mapActiveTag": "jobs",
+  "tagsSpacer": [],
+  "legend": "Número de ofertas de empleo publicadas",
+  "loadmore": "Cargar más",
+  "loadless": "Mostrar top",
+  "ranking": "Ver ranking completo",
+  "font": "Helvetica Neue",
+  "searcher": "buscar profesión",
+  "closeAll": "Cerrar todo",
+  "allSelectEvolution": "Todas las habilidades",
+  "allSelectSankey": "Todas las habilidades",
+  "accordionActiveTag": "jobs",
+  "clear": "Limpiar",
+  "offersPublished": "Ofertas publicadas",
+  "totalOffersPublished": "Total de ofertas publicadas",
+  "timesThatAreRequested": "Veces que se solicitan las siguientes habilidades en ofertas de",
+  "offersPublishedWhereRequested": "Ofertas publicadas donde se solicita",
+  "sourceSankey": "Fuente: Infojobs y tecnoempleo.com · Oct–Dic 2019",
+  "sankey": {
+    "height": 600,
+    "nodeMinValue": 200,
+    "colA": "Habilidades digitales",
+    "colB": "Profesiones digitales",
+    "tabA": "Habilidades",
+    "tabB": "Profesiones",
+    "activeTab": "skills"
+  },
+  "months": [
+    "Ene",
+    "Feb",
+    "Mar",
+    "Abr",
+    "May",
+    "Jun",
+    "Jul",
+    "Ago",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dic"
+  ]
+  
+}

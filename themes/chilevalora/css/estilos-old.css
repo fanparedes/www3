@@ -1,0 +1,270 @@
+*,
+*:focus {
+    outline: none !important;
+}
+body {
+    font-family: 'Roboto', serif;
+    background: #fff;
+}
+.wrapper {
+    background: #fff;
+}
+a {
+    color: #fea300;
+}
+a:hover {
+    color: #30707d;
+}
+a,
+a:hover {
+    text-decoration: none;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+.grafica-circulo svg {
+    margin: 0 auto;
+    display: block;
+}
+.grafica-circulo {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 30px;
+    display: block;
+    margin-bottom: 30px;
+    text-align: center;
+    font-family: "Arial";
+    font-size: 28px;
+}
+.owl-carousel.off {
+    display: block;
+}
+svg.radial-progress {
+    height: auto;
+    max-width: 250px;
+    transform: rotate(-90deg);
+    width: 100%;
+    margin-bottom: 20px;
+}
+svg.radial-progress circle {
+    fill: rgba(0, 0, 0, 0);
+    stroke: #000;
+    stroke-dashoffset: 219.91148575129;
+    /* Circumference */
+    stroke-width: 10;
+}
+svg.radial-progress circle.incomplete {
+    opacity: 0.25;
+}
+svg.radial-progress circle.complete {
+    stroke-dasharray: 219.91148575129;
+    /* Circumference */
+}
+svg.radial-progress text {
+    fill: #000;
+    text-anchor: middle;
+    font-size: 16px;
+}
+svg.radial-progress circle {
+    stroke: #a2ed56;
+}
+@media (max-width: 767px) {
+    .navbar-mainmenu .navbar-nav {
+        position: relative;
+        text-align: right;
+        padding: 0 17px;
+        right: auto;
+        bottom: auto;
+    }
+    header .navbar-toggler.openMenu {
+        font-size: 30px;
+        top: 30px;
+        right: 0px;
+    }
+    header .collapse:not(.show) {
+        display: block;
+    }
+    .navbar-collapse.cbp-spmenu {
+        position: fixed;
+        display: block;
+        right: -80%;
+        top: 0;
+        height: 100%;
+        background: #fea300;
+        color: #fff;
+        width: 80%;
+        z-index: 1050;
+        -webkit-transition: all 0.4s ease-in-out;
+        -moz-transition: all 0.4s ease-in-out;
+        -o-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out;
+    }
+    header .navbar-mainmenu .navbar-nav,
+    .home header .navbar-mainmenu .navbar-nav {
+        padding-top: 60px;
+    }
+    header .navbar-mainmenu .navbar-nav > li > a {
+        color: #fff;
+        text-align: left;
+    }
+    header .navbar-mainmenu .navbar-nav > li > a:hover,
+    header .navbar-mainmenu .navbar-nav > li.show > a {
+        color: #000;
+    }
+    .navbar-collapse.cbp-spmenu-open {
+        right: 0;
+    }
+    .closeMenu {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: #fff;
+        font-size: 40px;
+        z-index: 1070;
+    }
+    .owl-carousel .grafica-circulo {
+        border: 0;
+        padding: 0;
+    }
+    svg.radial-progress {
+        height: auto;
+        max-width: 215px;
+        transform: rotate(-90deg);
+        width: 100%;
+    }
+    .grafica-circulo {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    .owl-carousel {
+        margin-bottom: 30px;
+        margin-top: 30px;
+    }
+    .owl-theme .owl-dots,
+    .owl-theme .owl-nav {
+        text-align: center;
+        -webkit-tap-highlight-color: transparent
+    }
+    .owl-nav {
+        display: none;
+    }
+    .owl-theme .owl-nav.disabled + .owl-dots {
+        margin-top: 10px
+    }
+    .owl-theme .owl-dots .owl-dot {
+        display: inline-block;
+        zoom: 1
+    }
+    .owl-theme .owl-dots .owl-dot span {
+        width: 10px;
+        height: 10px;
+        margin: 5px 7px;
+        background: #D6D6D6;
+        display: block;
+        -webkit-backface-visibility: visible;
+        transition: opacity .2s ease;
+        border-radius: 30px
+    }
+    .owl-theme .owl-dots .owl-dot.active span,
+    .owl-theme .owl-dots .owl-dot:hover span {
+        background: #869791
+    }
+}
+@media (min-width: 768px) {
+    header .navbar-toggler.openMenu {
+        font-size: 40px;
+        top: 60px;
+        right: 0px;
+    }
+    header .navbar-toggler.openSearch {
+        font-size: 40px;
+        top: 66px;
+        right: 65px;
+    }
+    .owl-carousel > div {
+        float: left;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    .navbar-mainmenu .navbar-nav {
+        position: relative;
+        text-align: right;
+        padding: 0 17px;
+        right: auto;
+        bottom: auto;
+    }
+    header .collapse.cbp-spmenu:not(.show) {
+        display: block;
+    }
+    .navbar-collapse.cbp-spmenu {
+        position: fixed;
+        display: block;
+        right: -50%;
+        top: 0;
+        height: 100%;
+        background: #fea300;
+        color: #fff;
+        width: 50%;
+        z-index: 1050;
+        -webkit-transition: all 0.4s ease-in-out;
+        -moz-transition: all 0.4s ease-in-out;
+        -o-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out;
+    }
+    header .navbar-mainmenu .navbar-nav,
+    .home header .navbar-mainmenu .navbar-nav {
+        padding-top: 60px;
+    }
+    header .navbar-mainmenu .navbar-nav > li > a {
+        color: #fff;
+        text-align: left;
+    }
+    header .navbar-mainmenu .navbar-nav > li > a:hover,
+    header .navbar-mainmenu .navbar-nav > li.show > a {
+        color: #000;
+    }
+    .navbar-collapse.cbp-spmenu-open {
+        right: 0;
+    }
+    header .dropdown-menu {
+        background: rgba(255, 255, 255, .1);
+        box-shadow: none;
+        border: 0;
+    }
+    header .dropdown-item {
+        padding: .25rem 1rem;
+        color: #fff;
+        white-space: normal;
+        font-size: .875rem;
+    }
+    header .dropdown-header {
+        white-space: normal;
+        padding: .25rem 1rem;
+        color: #000;
+    }
+    .closeMenu {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: #fff;
+        font-size: 40px;
+        z-index: 1070;
+    }
+}
+@media (min-width: 992px) {
+    .closeSearch,
+    .modal-backdrop {
+        display: none;
+        background: none;
+    }
+    .navbar-mainmenu .navbar-nav {
+        position: absolute;
+        right: 0;
+        bottom: -7px;
+        border: 0 !important;
+        padding: 0;
+        text-align: left;
+    }
+}
+@media (min-width: 1200px) {}
