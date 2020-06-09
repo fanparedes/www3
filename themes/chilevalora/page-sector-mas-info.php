@@ -363,35 +363,58 @@
             <!-- BLOQUE GRAFICA -->
             <?php
                 $graphics_1 = file_get_contents(get_site_url().'/wp-json/wp/v2/show_state_grafico/1');
-                
-                //if($graphics_1=='2'){
+                if($graphics_1=='2'){
             ?>
+
                     <div class="col-12">
                         <div class="bloque-grafica">
-                            <h2 id="numero_ocupados" >Número de ocupados</h2>
+                            <h2>Número de ocupados en el tiempo</h2>
                             <div class="grafica">
                                 <script>
                                     document.addEventListener('DOMContentLoaded', function () {
-                                        Highcharts.getJSON('<?php echo get_site_url(); ?>/wp-json/wp/v2/crecimiento_sectores/<?php echo $id_sector; ?>', function (data) {
-                                            //console.log(data);
-                                            var data_sector = [];
-                                            var data_ejeX = [];
-                                            data_ejeX.push(parseInt(0));
-                                            for (var i = 0; i < data.length; i++) {
-                                                //console.log(data[i]);
-                                                data_sector.push(parseInt(data[i].number_workers));
-
-                                                data_ejeX.push(parseInt(data[i].ano));
+                                        
+                                        Highcharts.setOptions({
+                                            lang: {
+                                                months: [
+                                                    'Enero', 'Febrero', 'Marzo', 'Abril',
+                                                    'Mayo', 'Junio', 'Julio','Agosto', 
+                                                    'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+                                                ],
+                                                weekdays: [
+                                                    'Domingo', 'Lunes', 'Martes', 'Miércoles',
+                                                    'Jueves', 'Viernes', 'Sábado'
+                                                ],
+                                                shortMonths: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                                                rangeFromTo: 'Desde: {rangeFrom} hasta {rangeTo}.',
                                             }
-                                            //console.log(data_ejeX);
-                                            var myChart2 = Highcharts.chart('chartdiv22', {
-                                                
+                                        });
+
+                                        Highcharts.getJSON('<?php echo get_site_url(); ?>/wp-json/wp/v2/crecimiento_sectores/<?php echo $id_sector; ?>', function (data_json) {
+
+
+                                            var fecha = [];
+                                            for (var i = 0; i < data_json.length; i++) {
+                                                //console.log(data[i]);
+                                                var data_fortmat = new Array();
+                                                var format_fecha = Date.UTC(data_json[i].ano, data_json[i].mes,  1);
+                                                data_fortmat[0] = format_fecha;
+                                                data_fortmat[1] = data_json[i].value;
+
+                                                fecha.push(data_fortmat);
+                                            }
+
+                                            Highcharts.stockChart('chartdiv22', {
+                                                rangeSelector: {
+                                                    selected: 1
+                                                },
+
                                                 title: {
-                                                    text: data[0].name_sector
+                                                    text: 'Número de trabajadores del sector '+data_json[0].name_sector
                                                 },
                                                 subtitle: {
-                                                    text: 'Fuente: Gobierno de Chile'
+                                                    text: 'DestinoEmpleo en base a los datos del Seguro de Cesantía'
                                                 },
+                                                
                                                 lang : {
                                                     downloadCSV : 'Descargar CSV',
                                                     downloadJPEG: 'Descargar JPEG',
@@ -400,7 +423,7 @@
                                                     downloadSVG : 'Descargar SVG',
                                                     downloadXLS : 'Descargar Excel',
                                                     printChart  : 'Imprimir Gráfico',
-                                                    viewData    : 'Ver Data'
+                                                    viewData    : 'Ver Data'                                            
                                                 },
                                                 exporting: {
                                                     buttons: {
@@ -418,37 +441,46 @@
                                                           'viewData'
                                                         ]
                                                       }
+                                                    },
+                                                    csv: {
+                                                        columnHeaderFormatter: function(item, key) {
+                                                            //console.log(key);
+                                                            if (key=='from') {
+                                                                return 'Sector desde'
+                                                            }
+                                                            if (key=='to') {
+                                                                return 'A sector'
+                                                            }
+                                                            if (key=='weight') {
+                                                                return '% Rotación'
+                                                            }
+                                                            return false
+                                                        }
                                                     }
 
                                                 },
-                                                xAxis: {
-                                                    categories: data_ejeX,
-                                                    title: {
-                                                        text: 'Años'
-                                                    }
-                                                },
                                                 yAxis: {
-                                                    type: 'logarithmic',
-                                                    minorTickInterval: 0.1,
-                                                    accessibility: {
-                                                        rangeDescription: 'Range: 0.1 to 1000'
-                                                    },
-                                                    title: {
-                                                        text: 'N° Ocupados'
+                                                    labels: {
+                                                        formatter: function() {
+                                                         // if ( this.value > 100000 ) return Highcharts.numberFormat( this.value/1000, 1) + "l";  // maybe only switch if > 1000
+                                                          return Highcharts.numberFormat(this.value,0);
+                                                        }                
                                                     }
                                                 },
-                                                tooltip:{
-                                                    formatter:function(){
-                                                        //console.log(this);
-                                                        return 'X = ' + this.key + ', Y =' + this.y;
-                                                    }
+
+                                                xAxis: {
+                                                    title: {
+                                                        text: 'Número de trabajadores del sector '+data_json[0].name_sector
+                                                    },
+                                                    rangeFromTo: 'Desde: {rangeFrom} hasta {rangeTo}.',
                                                 },
 
                                                 series: [{
-                                                    data: data_sector,
-                                                    color: '#7fbeda',
-                                                    pointStart: 1,
-                                                    name: 'Números de Ocupados'
+                                                    name: 'Número de trabajadores del sector '+data_json[0].name_sector,
+                                                    data: fecha,
+                                                    tooltip: {
+                                                        valueDecimals: 0
+                                                    }
                                                 }]
                                             });
                                         });
@@ -459,7 +491,7 @@
                         </div>
                     </div>
             <?php
-                //} 
+                } 
             ?>
 
             <!-- FIN BLOQUE GRAFICA -->
@@ -541,120 +573,214 @@
             <!-- BLOQUE GRAFICA -->
             <?php
                 $graphics_2 = file_get_contents(get_site_url().'/wp-json/wp/v2/show_state_grafico/2');
-                //if($graphics_2=='2'){
+                if($graphics_2=='2'){
             ?>
                     <div class="col-12">
                         <div class="bloque-grafica">
-                            <h2 id="contratos_indefinidos">XX% de contratos indefinidos</h2>
+                            <h2>Contratos indefinidos por subsector</h2>
                             <div class="grafica">
+                                
+
                                 <script>
                                     document.addEventListener('DOMContentLoaded', function () {
-                                        Highcharts.getJSON('<?php echo get_site_url(); ?>/wp-json/wp/v2/contratos_indefinidos_subsectores/<?php echo $id_sector; ?>', function (data) {
-                                            //console.log(data);
-                                            var myChart4 = Highcharts.chart('chartdiv44', {
-                                                
-                                                title: {
-                                                    text: 'XX% de contratos indefinidos'
-                                                },
-                                                lang : {
-                                                    downloadCSV : 'Descargar CSV',
-                                                    downloadJPEG: 'Descargar JPEG',
-                                                    downloadPDF : 'Descargar PDF',
-                                                    downloadPNG : 'Descargar PNG',
-                                                    downloadSVG : 'Descargar SVG',
-                                                    downloadXLS : 'Descargar Excel',
-                                                    printChart  : 'Imprimir Gráfico',
-                                                    viewData    : 'Ver Data'
-                                                },
-                                                exporting: {
-                                                    buttons: {
-                                                      contextButton: {
-                                                        menuItems: [
-                                                          'printChart',
-                                                          'separator',
-                                                          'downloadPNG',
-                                                          'downloadJPEG',
-                                                          'downloadPDF',
-                                                          'downloadSVG',
-                                                          'separator',
-                                                          'downloadCSV',
-                                                          'downloadXLS',
-                                                          'viewData'
-                                                        ]
-                                                      }
-                                                    }
+                                        Highcharts.getJSON('<?php echo get_site_url(); ?>/wp-json/wp/v2/contratos_indefinidos_subsectores_names/<?php echo $id_sector; ?>', function (data_names) {
 
-                                                },
-                                                subtitle: {
-                                                    text: 'Fuente: Gobierno de Chile'
-                                                },
+                                            var name_serie = [];
+                                            for (var i = 0; i < data_names.data.length; i++) {
 
-                                                yAxis: {
-                                                    title: {
-                                                        text: 'XX% de Contratos indefinidos'
-                                                    }
-                                                },
+                                                name_serie.push(data_names.data[i].name_subsector);
+                                            }
 
-                                                xAxis: {
-                                                     categories: data.ejeX,
-                                                    title: {
-                                                        text: 'Años'
-                                                    }
-                                                },
+                                        //console.log(name_serie);
 
-                                                legend: {
-                                                    layout: 'vertical',
-                                                    align: 'right',
-                                                    verticalAlign: 'middle'
-                                                },
+                                            var seriesOptions = [],
+                                                seriesCounter = 0,
+                                                names = [name_serie];
 
-                                                // plotOptions: {
-                                                //     series: {
-                                                //         label: {
-                                                //             connectorAllowed: false
-                                                //         },
-                                                //         pointStart: data.ejeX[0]
-                                                //     }
-                                                // },
+                                            /**
+                                             * Create the chart when all data is loaded
+                                             * @returns {undefined}
+                                             */
+                                            function createChart() {
 
-                                                series: data.data_grafico,
-                                                
+                                                Highcharts.stockChart('chartdiv44', {
 
-                                                responsive: {
-                                                    rules: [{
-                                                        condition: {
-                                                            maxWidth: 50000
+                                                    rangeSelector: {
+                                                        selected: 4
+                                                    },
+
+                                                        lang : {
+                                                        downloadCSV : 'Descargar CSV',
+                                                        downloadJPEG: 'Descargar JPEG',
+                                                        downloadPDF : 'Descargar PDF',
+                                                        downloadPNG : 'Descargar PNG',
+                                                        downloadSVG : 'Descargar SVG',
+                                                        downloadXLS : 'Descargar Excel',
+                                                        printChart  : 'Imprimir Gráfico',
+                                                        viewData    : 'Ver Data'                                            
+                                                    },
+                                                    exporting: {
+                                                        buttons: {
+                                                          contextButton: {
+                                                            menuItems: [
+                                                              'printChart',
+                                                              'separator',
+                                                              'downloadPNG',
+                                                              'downloadJPEG',
+                                                              'downloadPDF',
+                                                              'downloadSVG',
+                                                              'separator',
+                                                              'downloadCSV',
+                                                              'downloadXLS',
+                                                              'viewData'
+                                                            ]
+                                                          }
                                                         },
-                                                        chartOptions: {
-                                                            legend: {
-                                                                layout: 'horizontal',
-                                                                align: 'left',
-                                                                verticalAlign: 'bottom'
+                                                        csv: {
+                                                            columnHeaderFormatter: function(item, key) {
+                                                                //console.log(key);
+                                                                if (key=='from') {
+                                                                    return 'Sector desde'
+                                                                }
+                                                                if (key=='to') {
+                                                                    return 'A sector'
+                                                                }
+                                                                if (key=='weight') {
+                                                                    return '% Rotación'
+                                                                }
+                                                                return false
                                                             }
                                                         }
-                                                    }]
-                                                }
 
-                                            });
+                                                    },
+                                                    title: {
+                                                        text: 'Porcentaje de trabajadores con contrato indefinido por subsector'
+                                                    },
+                                                    subtitle: {
+                                                        text: 'DestinoEmpleo en base a los datos del Seguro de Cesantía'
+                                                    },
+                                                    yAxis: {
+                                                        labels: {
+                                                            formatter: function() {
+                                                             // if ( this.value > 100000 ) return Highcharts.numberFormat( this.value/1000, 1) + "l";  // maybe only switch if > 1000
+                                                              return Highcharts.numberFormat(this.value,0);
+                                                            }                
+                                                        },
+                                                        plotLines: [{
+                                                            value: 0,
+                                                            width: 2,
+                                                            color: 'silver'
+                                                        }]
+                                                    },
+
+                                                    plotOptions: {
+                                                        series: {
+                                                            compare: 'percent',
+                                                            showInNavigator: true
+                                                        }
+                                                    },
+                                                    xAxis: {
+                                                        title: {
+                                                            text: 'Porcentaje de trabajadores con contrato indefinido'
+                                                        }
+                                                    },
+
+                                                    tooltip: {
+                                                        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+                                                        valueDecimals: 2,
+                                                        split: true
+                                                    },
+
+                                                    series: seriesOptions
+                                                });
+                                            }
+
+                                            function success(data) {
+                                                //console.log(this.url.match(\data_names.name_match+"\\"));
+                                                //var name = this.url.match("'"+data_names.name_match+"'")[0].toUpperCase();
+                                                var name = new RegExp(data_names.name_match);
+                                                //console.log(re_name);
+
+                                                name = this.url.match(name)[0];
+
+                                                //console.log(name);
+                                                
+                                                //var i = names.indexOf(name);
+
+                                                
+
+                                                var i = data_names.rs_cabecera[name];
+                                                var name_head = data_names.rs_name_cabecera[name];
+
+                                                //console.log(i);
+
+                                                seriesOptions[i] = {
+                                                    name: name_head,
+                                                    data: data
+                                                };
+
+                                                //console.log(seriesOptions);
+
+                                                // As we're loading the data asynchronously, we don't know what order it
+                                                // will arrive. So we keep a counter and create the chart when all the data is loaded.
+                                                seriesCounter += 1;
+
+                                                createChart();
+
+                                                
+                                                jQuery('text:contains("Zoom")').text('Ver');
+                                                jQuery('text:contains("YTD")').text('A');
+                                                jQuery('text:contains("1y")').text('1 A');
+                                                jQuery('text:contains("From")').text('Des:');
+                                                jQuery('text:contains("To")').text('Has:');
+                                                jQuery('text:contains("All")').text('Todos');
+
+                                                // for (var i = 0; i < data_names.data.length; i++) {
+
+                                                   
+
+                                                //     seriesOptions[i] = {
+                                                //         name: data_names.data[i],
+                                                //         data: data
+                                                //     };
+                                                //     console.log(seriesOptions);
+                                                //     createChart();
+                                                // }
+
+
+                                            }
+
+                                            for (var i = 0; i < data_names.data.length; i++) {
+
+                                                //name_serie.push(data_names[i].name_subsector);
+
+                                                Highcharts.getJSON(
+                                                    '<?php echo get_site_url(); ?>/wp-json/wp/v2/contratos_indefinidos_subsectores/<?php echo $id_sector; ?>/'+data_names.data[i].sub_sector,
+                                                    success
+                                                );
+                                            }
+
+                                            
+
                                         });
-                                });
+                                    });
                                 </script>
                                 <div id="chartdiv44" class="chartdiv"></div>
                             </div>
                         </div>
                     </div>
             <?php
-                //}
+                }
             ?>
             <!-- FIN BLOQUE GRAFICA -->
             <!-- BLOQUE GRAFICA -->
             <?php
                 $graphics_3 = file_get_contents(get_site_url().'/wp-json/wp/v2/show_state_grafico/3');
-                //if($graphics_3=='2'){
+                if($graphics_3=='2'){
             ?>
                     <div class="col-12">
                         <div class="bloque-grafica">
-                            <h2 id="p_contratos_indefinidos">% de contratos indefinidos</h2>
+                            <h2>Contrato indefinido</h2>
                             <div class="grafica">
                                 <script>
                                     document.addEventListener('DOMContentLoaded', function () {
@@ -664,11 +790,11 @@
                                             var myChart4 = Highcharts.chart('chartdiv4', {
                                                 
                                                 title: {
-                                                    text: '% de contratos indefinidos'
+                                                    text: 'Porcentaje de trabajadores del sector '+data.data_grafico.name+' con contrato indefinido'
                                                 },
 
                                                 subtitle: {
-                                                    text: 'Fuente: Gobierno de Chile'
+                                                    text: 'DestinoEmpleo en base a los datos del Seguro de Cesantía'
                                                 },
                                                 lang : {
                                                     downloadCSV : 'Descargar CSV',
@@ -703,13 +829,13 @@
                                                 xAxis: {
                                                     categories: data.ejeX,
                                                     title: {
-                                                        text: 'Años'
+                                                        //text: 'Porcentaje de trabajadores con contrato indefinido'
                                                     }
                                                 },
 
                                                 yAxis: {
                                                      title: {
-                                                        text: '% Contratos indefinidos'
+                                                        text: ''
                                                     }
                                                 },
                                                 legend: {
@@ -736,7 +862,7 @@
                                                     data: data.data_grafico.data,
                                                     pointStart: 1,
                                                     //name: data.data_grafico.name
-                                                    name : '% de contratos indefinidos'
+                                                    name : 'Porcentaje de trabajadores con contrato indefinido'
                                                 }],
                                                 responsive: {
                                                     rules: [{
@@ -761,7 +887,7 @@
                         </div>
                     </div>
             <?php
-                //}
+                }
             ?>
             <!-- FIN BLOQUE GRAFICA -->
             <!-- BLOQUE GRAFICA -->
@@ -869,11 +995,11 @@
             <!-- BLOQUE GRAFICA -->
             <?php
                 $graphics_5 = file_get_contents(get_site_url().'/wp-json/wp/v2/show_state_grafico/5');
-               // if($graphics_5=='2'){
+                if($graphics_5=='2'){
             ?>
                     <div class="col-12">
                         <div class="bloque-grafica">
-                            <h2 id="rotacion">XX% de rotación</h2>
+                            <h2>XX% de rotación</h2>
                             <div class="grafica">
                                 <script>
                                     document.addEventListener('DOMContentLoaded', function () {
@@ -883,7 +1009,7 @@
                                                         text: 'XX% de rotación'
                                                     },
                                                     subtitle: {
-                                                        text: 'Fuente: Gobierno de Chile'
+                                                        // text: 'Fuente: Gobierno de Chile'
                                                     },
                                                     lang : {
                                                         downloadCSV : 'Descargar CSV',
@@ -963,17 +1089,17 @@
                         </div>
                     </div>
             <?php
-                //}
+                }
             ?>
             <!-- FIN BLOQUE GRAFICA -->
             <!-- BLOQUE GRAFICA -->
             <?php
                 $graphics_6 = file_get_contents(get_site_url().'/wp-json/wp/v2/show_state_grafico/6');
-               // if($graphics_6=='2'){
+                if($graphics_6=='2'){
             ?>
                     <div class="col-12">
                         <div class="bloque-grafica">
-                            <h2 id="nuevos_trabajadores">XX% de nuevos trabajadores</h2>
+                            <h2>XX% de nuevos trabajadores</h2>
                             <div class="grafica">
                                 <script>
                                     document.addEventListener('DOMContentLoaded', function () {
@@ -988,7 +1114,7 @@
                                                     text: 'XX% de nuevos trabajadores'
                                                 },
                                                 subtitle: {
-                                                    text: 'Fuente: Gobierno de Chile'
+                                                    // text: 'Fuente: Gobierno de Chile'
                                                 },
                                                 lang : {
                                                     downloadCSV : 'Descargar CSV',
@@ -1056,17 +1182,17 @@
                         </div>
                     </div>
             <?php
-                //}
+                }
             ?>
             <!-- FIN BLOQUE GRAFICA -->
             <!-- BLOQUE GRAFICA -->
             <?php
                 $graphics_8 = file_get_contents(get_site_url().'/wp-json/wp/v2/show_state_grafico/8');
-                //if($graphics_8=='2'){
+                if($graphics_8=='2'){
             ?>
                     <div class="col-12">
                         <div class="bloque-grafica">
-                            <h2 id="mujeres">% de mujeres por subsector</h2>
+                            <h2>Participación de mujeres en el tiempo</h2>
                             <div class="grafica">
                                 <script>
                                     document.addEventListener('DOMContentLoaded', function () {
@@ -1078,10 +1204,10 @@
                                                     height: 500
                                                 },
                                                 title: {
-                                                    text: '% de mujeres por subsector'
+                                                    text: 'Porcentaje de mujeres que trabajan en el sector '+data.name_sector
                                                 },
                                                 subtitle: {
-                                                    text: 'Fuente: Gobierno de Chile'
+                                                    text: 'DestinoEmpleo en base a los datos del Seguro de Cesantía'
                                                 },
                                                 lang : {
                                                     downloadCSV : 'Descargar CSV',
@@ -1115,13 +1241,13 @@
                                                 xAxis: {
                                                     categories: data.ejeX,
                                                     title : {
-                                                        text: 'Subsector'
+                                                        text: ''
                                                     }
                                                 },
                                                 yAxis: {
                                                     min: 0,
                                                     title: {
-                                                        text: '% de mujeres por subsector'
+                                                        //text: 'Porcentaje de mujeres'
                                                     }
                                                 },
                                                 tooltip: {
@@ -1149,17 +1275,17 @@
                         </div>
                     </div>
             <?php
-                //}
+                }
             ?>
             <!-- FIN BLOQUE GRAFICA -->
             <!-- BLOQUE GRAFICA -->
             <?php
                 $graphics_7 = file_get_contents(get_site_url().'/wp-json/wp/v2/show_state_grafico/7');
-               // if($graphics_7=='2'){
+                if($graphics_7=='2'){
             ?>
                     <div class="col-12">
                         <div class="bloque-grafica">
-                            <h2 id="migrantes">XX% de migrantes</h2>
+                            <h2>XX% de migrantes</h2>
                             <div class="grafica">
                                 <script>
                                     document.addEventListener('DOMContentLoaded', function () {
@@ -1173,7 +1299,7 @@
                                                     text: '% de migrantes por subsector'
                                                 },
                                                 subtitle: {
-                                                    text: 'Fuente: Gobierno de Chile'
+                                                    // text: 'Fuente: Gobierno de Chile'
                                                 },
                                                 xAxis: {
                                                     categories: data.ejeX,
@@ -1241,7 +1367,7 @@
                         </div>
                     </div>
             <?php
-               // }
+                }
             ?>
             <!-- FIN BLOQUE GRAFICA -->
             

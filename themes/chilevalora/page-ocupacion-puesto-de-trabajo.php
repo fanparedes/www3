@@ -222,43 +222,7 @@
 								<?php endif;?>	
 							<?php endif;?>
 
-						<?php
-							//HABILIDADES O COMPETENCIAS BUSCADAS EN UNA OCUPACIÓN
-							$results_abilities = 	$wpdb->get_results("SELECT data, status from cl_indicators where status = 1 and id_indicator_type = 65 limit 1");
-							
-							if( $results_abilities ) : 
-							
-								$occupations_abilities = json_decode($results_abilities[0]->data, true);
-								
-								foreach($occupations as $occupation){
-									if( $occupation['data']['title'] == $job_position->name_job_position ){
-										$value_abilities = $occupation['data']['value'];
-										$title_abilities = $occupation['data']['title'];
-										$name_abilities = $occupation['data']['name'];
-									}	
-								}
-
-
-								if ( !empty( $title_abilities ) ):										
-						?>
-									<div class="col-12 col-md-6">
-										<div class="bloque-icono">
-											<div class="row">
-												<div class="col-md-12 ">
-													<div class="icono">
-					
-														<i class="iconcl-ocupacion-xl"></i>
-													</div>
-													<div class="text">
-														<span class="title"><?php echo $title_abilities; ?></span>
-														<p><?php echo $name_abilities ; ?> es el conocimiento que mas se requiere en esta ocupacion</p>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								<?php endif;?>	
-							<?php endif;?>
+						
 
 						<?php
 							//CANALES DE RECLUTAMIENTO POR OCUPACIÓN

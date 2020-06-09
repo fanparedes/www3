@@ -1,0 +1,65 @@
+{
+  "id": "jobs",
+  "title": "Profesiones digitales",
+  "values": [
+    {
+      "title": "Profesionales de la publicidad y el marketing",
+      "jobs": [
+        {
+          "title": "Community manager",
+          "description": "Gestiona todas aquellas comunidades digitales en las que la organización está presente o le puede interesar estar presente (redes sociales, foros, etc)."
+        },
+        {
+          "title": "Especialista en marketing digital",
+          "description": "Gestiona todas aquellas comunidades digitales en las que la organización está presente o le puede interesar estar presente (redes sociales, foros, etc)."
+        },
+        {
+          "title": "Especialista e-commerce",
+          "description": "Gestiona todas aquellas comunidades digitales en las que la organización está presente o le puede interesar estar presente (redes sociales, foros, etc)."
+        },
+        {
+          "title": "Especialista SEO & SEM",
+          "description": "Gestiona todas aquellas comunidades digitales en las que la organización está presente o le puede interesar estar presente (redes sociales, foros, etc)."
+        }
+      ]
+    },
+    {
+      "title": "Analistas y consultores",
+      "jobs": [
+        {
+          "title": "Community manager",
+          "description": "Gestiona todas aquellas comunidades digitales en las que la organización está presente o le puede interesar estar presente (redes sociales, foros, etc)."
+        },
+        {
+          "title": "Especialista en marketing digital",
+          "description": "Gestiona todas aquellas comunidades digitales en las que la organización está presente o le puede interesar estar presente (redes sociales, foros, etc)."
+        },
+        {
+          "title": "Especialista e-commerce",
+          "description": "Gestiona todas aquellas comunidades digitales en las que la organización está presente o le puede interesar estar presente (redes sociales, foros, etc)."
+        },
+        {
+          "title": "Especialista SEO & SEM",
+          "description": "Gestiona todas aquellas comunidades digitales en las que la organización está presente o le puede interesar estar presente (redes sociales, foros, etc)."
+        }
+      ]
+    },
+    {
+      "title": "Desarrolladores de software",
+      "jobs": [
+        {
+          "title": "Community manager",
+          "description": "Gestiona todas aquellas comunidades digitales en las que la organización está presente o le puede interesar estar presente (redes sociales, foros, etc)."
+        },
+        {
+          "title": "Especialista e-commerce",
+          "description": "Gestiona todas aquellas comunidades digitales en las que la organización está presente o le puede interesar estar presente (redes sociales, foros, etc)."
+        },
+        {
+          "title": "Especialista SEO & SEM",
+          "description": "Gestiona todas aquellas comunidades digitales en las que la organización está presente o le puede interesar estar presente (redes sociales, foros, etc)."
+        }
+      ]
+    }
+  ]
+}

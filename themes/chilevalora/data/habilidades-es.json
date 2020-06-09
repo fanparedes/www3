@@ -1,0 +1,338 @@
+{
+  "id": "skills",
+  "title": "Habilidades digitales",
+  "values": [
+    {
+      "id": 3104469,
+      "Python": 10,
+      "Git": 20,
+      "Scrum": 20,
+      "JavaScrip": 50000,
+      "Webpack": 2000
+    },
+    {
+      "id": 8335119,
+      "Python": 25500,
+      "Git": 34000,
+      "Scrum": 20000,
+      "JavaScrip": 50000
+    },
+    {
+      "id": 6424360,
+      "Python": 20000,
+      "Git": 3000,
+      "Scrum": 20000,
+      "JavaScrip": 50000
+    },
+    {
+      "id": 8335120,
+      "Python": 20000,
+      "Git": 300000,
+      "Scrum": 2000,
+      "JavaScrip": 50000
+    },
+    {
+      "id": 6355234,
+      "Python": 20000,
+      "Git": 30000,
+      "Scrum": 2000,
+      "JavaScrip": 50000
+    },
+    {
+      "id": 6355236,
+      "Python": 2000,
+      "Git": 3000,
+      "Scrum": 2000,
+      "JavaScrip": 50000
+    },
+    {
+      "id": 2519239,
+      "Python": 320,
+      "Git": 30,
+      "Scrum": 20
+    },
+    {
+      "id": 2510407,
+      "Python": 2330,
+      "Git": 30,
+      "Scrum": 20
+    },
+    {
+      "id": 3119840,
+      "Python": 20,
+      "Git": 3055,
+      "Scrum": 20
+    },
+    {
+      "id": 3130717,
+      "Python": 20,
+      "Git": 3055,
+      "Scrum": 20
+    },
+    {
+      "id": 2522257,
+      "Python": 20000,
+      "Git": 30600,
+      "Scrum": 200
+    },
+    {
+      "id": 2521976,
+      "Python": 206,
+      "Git": 30,
+      "Scrum": 20
+    },
+    {
+      "id": 2521883,
+      "Python": 450,
+      "Git": 350,
+      "Scrum": 620
+    },
+    {
+      "id": 3129138,
+      "Python": 209,
+      "Git": 30,
+      "Scrum": 20
+    },
+    {
+      "id": 2521419,
+      "Python": 10,
+      "Git": 50,
+      "Scrum": 67
+    },
+    {
+      "id": 3128759,
+      "Python": 70,
+      "Git": 80,
+      "Scrum": 90
+    }
+	,
+    {
+      "id": 2521419,
+      "Python": 45,
+      "Git": 524,
+      "Scrum": 546
+    },
+    {
+      "id": 3128759,
+      "Python": 123,
+      "Git": 321,
+      "Scrum": 213
+    },
+    {
+      "id": 3127460,
+      "Python": 244,
+      "Git": 330,
+      "Scrum": 280
+    },
+    {
+      "id": 2520610,
+      "Python": 60,
+      "Git": 70,
+      "Scrum": 80
+    },
+    {
+      "id": 2520597,
+      "Python": 90,
+      "Git": 10,
+      "Scrum": 220
+    },
+    {
+      "id": 3109716,
+      "Python": 210,
+      "Git": 350,
+      "Scrum": 207
+    },
+    {
+      "id": 3125881,
+      "Python": 540,
+      "Git": 430,
+      "Scrum": 230
+    },
+    {
+      "id": 2519401,
+      "Python": 10,
+      "Git": 70,
+      "Scrum": 60
+    },
+    {
+      "id": 2519034,
+      "Python": 120,
+      "Git": 210,
+      "Scrum": 430
+    },
+    {
+      "id": 6355230,
+      "Python": 70,
+      "Git": 50,
+      "Scrum": 80
+    },
+    {
+      "id": 2517115,
+      "Python": 320,
+      "Git": 142,
+      "Scrum": 280
+    },
+    {
+      "id": 3121069,
+      "Python": 340,
+      "Git": 340,
+      "Scrum": 270
+    },
+    {
+      "id": 3120935,
+      "Python": 320,
+      "Git": 210,
+      "Scrum": 320
+    },
+    {
+      "id": 2516547,
+      "Python": 40,
+      "Git": 60,
+      "Scrum": 90
+    },
+	{
+      "id": 3120513,
+      "Python": 140,
+      "Git": 210,
+      "Scrum": 320
+    },
+	{
+      "id": 2516394,
+      "Python": 560,
+      "Git": 320,
+      "Scrum": 210
+    },
+	{
+      "id": 6355232,
+      "Python": 220,
+      "Git": 370,
+      "Scrum": 820
+    },
+	{
+      "id": 2515271,
+      "Python": 220,
+      "Git": 330,
+      "Scrum": 230
+    },
+	{
+      "id": 3118528,
+      "Python": 120,
+      "Git": 36,
+      "Scrum": 25
+    },
+	{
+      "id": 6355231,
+      "Python": 250,
+      "Git": 39,
+      "Scrum": 45
+    },
+	{
+      "id": 3117813,
+      "Python": 540,
+      "Git": 530,
+      "Scrum": 520
+    },
+	{
+      "id": 6355233,
+      "Python": 120,
+      "Git": 130,
+      "Scrum": 120
+    },
+	{
+      "id": 2514254,
+      "Python": 320,
+      "Git": 640,
+      "Scrum": 540
+    },
+	{
+      "id": 6355235,
+      "Python": 230,
+      "Git": 430,
+      "Scrum": 554
+    },
+	{
+      "id": 3114964,
+      "Python": 25,
+      "Git": 553,
+      "Scrum": 345
+    },
+	{
+      "id": 3114530,
+      "Python": 345,
+      "Git": 563,
+      "Scrum": 634
+    },
+	{
+      "id": 3113208,
+      "Python": 24,
+      "Git": 35,
+      "Scrum": 46
+    },
+	{
+      "id": 3111107,
+      "Python": 243,
+      "Git": 354,
+      "Scrum": 475
+    },
+	{
+      "id": 2511173,
+      "Python": 645,
+      "Git": 534,
+      "Scrum": 423
+    },
+	{
+      "id": 3109254,
+      "Python": 123,
+      "Git": 345,
+      "Scrum": 45
+    },
+	{
+      "id": 2510910,
+      "Python": 22,
+      "Git": 33,
+      "Scrum": 44
+    },
+	{
+      "id": 3108680,
+      "Python": 55,
+      "Git": 66,
+      "Scrum": 77
+    },
+	{
+      "id": 3108287,
+      "Python": 88,
+      "Git": 99,
+      "Scrum": 11
+    },
+	{
+      "id": 3108125,
+      "Python": 33,
+      "Git": 432,
+      "Scrum": 443
+    },
+	{
+      "id": 2509951,
+      "Python": 224,
+      "Git": 335,
+      "Scrum": 447
+    },
+	{
+      "id": 3106671,
+      "Python": 243,
+      "Git": 323,
+      "Scrum": 523
+    },
+	{
+      "id": 3104341,
+      "Python": 54,
+      "Git": 43,
+      "Scrum": 32
+    },
+	{
+      "id": 3104323,
+      "Python": 98,
+      "Git": 87,
+      "Scrum": 76
+    }
+  ]
+}

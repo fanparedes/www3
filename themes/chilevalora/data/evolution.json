@@ -1,0 +1,178 @@
+[
+  {
+    "date": "1999-01-01",
+    "Especialista UI": 10,
+    "Administrador de sistemas": 20,
+    "Desarrollador Web y multimedia": 100,
+    "Profesional TIC": 50,
+    "Digital Project Manager": 12
+  },
+  {
+    "date": "1999-02-01",
+    "Especialista UI": 20,
+    "Administrador de sistemas": 10,
+    "Desarrollador Web y multimedia": 50,
+    "Profesional TIC": 55,
+    "Digital Project Manager": 18
+  },
+  {
+    "date": "1999-03-01",
+    "Especialista UI": 30,
+    "Administrador de sistemas": 14,
+    "Desarrollador Web y multimedia": 35,
+    "Profesional TIC": 45,
+    "Digital Project Manager": 22
+  },
+  {
+    "date": "1999-04-01",
+    "Especialista UI": 60,
+    "Administrador de sistemas": 24,
+    "Desarrollador Web y multimedia": 25,
+    "Profesional TIC": 35,
+    "Digital Project Manager": 32
+  },
+  {
+    "date": "1999-05-01",
+    "Especialista UI": 80,
+    "Administrador de sistemas": 44,
+    "Desarrollador Web y multimedia": 45,
+    "Profesional TIC": 55,
+    "Digital Project Manager": 52
+  },
+  {
+    "date": "1999-06-01",
+    "Especialista UI": 90,
+    "Administrador de sistemas": 54,
+    "Desarrollador Web y multimedia": 25,
+    "Profesional TIC": 25,
+    "Digital Project Manager": 32
+  },
+  {
+    "date": "1999-07-01",
+    "Especialista UI": 40,
+    "Administrador de sistemas": 34,
+    "Desarrollador Web y multimedia": 15,
+    "Profesional TIC": 5,
+    "Digital Project Manager": 12
+  },
+  {
+    "date": "1999-08-01",
+    "Especialista UI": 14,
+    "Administrador de sistemas": 13,
+    "Desarrollador Web y multimedia": 11,
+    "Profesional TIC": 5,
+    "Digital Project Manager": 12
+  },
+  {
+    "date": "1999-09-01",
+    "Especialista UI": 30,
+    "Administrador de sistemas": 14,
+    "Desarrollador Web y multimedia": 35,
+    "Profesional TIC": 45,
+    "Digital Project Manager": 22
+  },
+  {
+    "date": "1999-10-01",
+    "Especialista UI": 10,
+    "Administrador de sistemas": 20,
+    "Desarrollador Web y multimedia": 100,
+    "Profesional TIC": 50,
+    "Digital Project Manager": 12
+  },
+  {
+    "date": "1999-11-01",
+    "Especialista UI": 5,
+    "Administrador de sistemas": 2,
+    "Desarrollador Web y multimedia": 2,
+    "Profesional TIC": 2,
+    "Digital Project Manager": 2
+  },
+  {
+    "date": "2000-01-01",
+    "Especialista UI": 10,
+    "Administrador de sistemas": 20,
+    "Desarrollador Web y multimedia": 100,
+    "Profesional TIC": 50,
+    "Digital Project Manager": 12
+  },
+  {
+    "date": "2000-02-01",
+    "Especialista UI": 20,
+    "Administrador de sistemas": 10,
+    "Desarrollador Web y multimedia": 50,
+    "Profesional TIC": 55,
+    "Digital Project Manager": 18
+  },
+  {
+    "date": "2000-03-01",
+    "Especialista UI": 30,
+    "Administrador de sistemas": 14,
+    "Desarrollador Web y multimedia": 35,
+    "Profesional TIC": 45,
+    "Digital Project Manager": 22
+  },
+  {
+    "date": "2000-04-01",
+    "Especialista UI": 60,
+    "Administrador de sistemas": 24,
+    "Desarrollador Web y multimedia": 25,
+    "Profesional TIC": 35,
+    "Digital Project Manager": 32
+  },
+  {
+    "date": "2000-05-01",
+    "Especialista UI": 80,
+    "Administrador de sistemas": 44,
+    "Desarrollador Web y multimedia": 45,
+    "Profesional TIC": 55,
+    "Digital Project Manager": 52
+  },
+  {
+    "date": "2000-06-01",
+    "Especialista UI": 90,
+    "Administrador de sistemas": 54,
+    "Desarrollador Web y multimedia": 25,
+    "Profesional TIC": 25,
+    "Digital Project Manager": 32
+  },
+  {
+    "date": "2000-07-01",
+    "Especialista UI": 40,
+    "Administrador de sistemas": 34,
+    "Desarrollador Web y multimedia": 15,
+    "Profesional TIC": 5,
+    "Digital Project Manager": 12
+  },
+  {
+    "date": "2000-08-01",
+    "Especialista UI": 14,
+    "Administrador de sistemas": 13,
+    "Desarrollador Web y multimedia": 11,
+    "Profesional TIC": 5,
+    "Digital Project Manager": 12
+  },
+  {
+    "date": "2000-09-01",
+    "Especialista UI": 30,
+    "Administrador de sistemas": 14,
+    "Desarrollador Web y multimedia": 35,
+    "Profesional TIC": 45,
+    "Digital Project Manager": 22
+  },
+  {
+    "date": "2000-10-01",
+    "Especialista UI": 10,
+    "Administrador de sistemas": 10,
+    "Desarrollador Web y multimedia": 10,
+    "Profesional TIC": 5,
+    "Digital Project Manager": 1
+  },
+  {
+    "date": "2000-11-01",
+    "Especialista UI": 40,
+    "Administrador de sistemas": 34,
+    "Desarrollador Web y multimedia": 15,
+    "Profesional TIC": 5,
+    "Digital Project Manager": 12
+  }
+]

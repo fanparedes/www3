@@ -163,88 +163,94 @@ function graphics1($id_graphics){
         		<?php echo btn_state_grafico($id_graphics); ?>
         		<a href="<?php echo get_site_url(); ?>/wp-admin/admin.php?page=grafico_load" class="btn btn-chilevalora">&laquo; Volver</a>
         	</div>
-            <h2>Número de ocupados</h2>
+            <h2>Número de ocupados en el tiempo</h2>
             <div class="grafica">
                 <script>
 
                     document.addEventListener('DOMContentLoaded', function () {
                         Highcharts.getJSON('<?php echo get_site_url(); ?>/wp-json/wp/v2/crecimiento_sectores_dashboard_old/', function (data) {
-                            console.log(data.data_grafico);
-                            var myChart6 = Highcharts.chart('chartdiv6old', {
-                                chart: {
-                                    type: 'bar',
-                                    height : 800
-                                },
-                                title: {
-                                    text: 'Número de ocupados'
-                                },
-                                subtitle: {
-                                    //text: 'Fuente: Gobierno de Chile'
-                                },
-                                lang : {
-                                    downloadCSV : 'Descargar CSV',
-                                    downloadJPEG: 'Descargar JPEG',
-                                    downloadPDF : 'Descargar PDF',
-                                    downloadPNG : 'Descargar PNG',
-                                    downloadSVG : 'Descargar SVG',
-                                    downloadXLS : 'Descargar Excel',
-                                    printChart  : 'Imprimir Gráfico',
-                                    viewData    : 'Ver Data'
-                                },
-                                exporting: {
-                                    buttons: {
-                                      contextButton: {
-                                        menuItems: [
-                                          'printChart',
-                                          'separator',
-                                          'downloadPNG',
-                                          'downloadJPEG',
-                                          'downloadPDF',
-                                          'downloadSVG',
-                                          'separator',
-                                          'downloadCSV',
-                                          'downloadXLS',
-                                          'viewData'
-                                        ]
-                                      }
-                                    }
 
-                                },
-                                xAxis: {
-                                    categories: data.ejeX,
-                                    title : {
-                                        text: 'Sectores'
-                                    }
-                                },
-                                yAxis: {
-                                    min: 0,
+                            if(data){
+                                var myChart6 = Highcharts.chart('chartdiv6old', {
+                                    chart: {
+                                        type: 'bar',
+                                        height : 800
+                                    },
                                     title: {
-                                        text: 'Número de ocupados'
-                                    }
-                                      labels: {
-                                        formatter: function() {
-                                         // if ( this.value > 100000 ) return Highcharts.numberFormat( this.value/1000, 1) + "l";  // maybe only switch if > 1000
-                                          return Highcharts.numberFormat(this.value,0);
-                                        }                
-                                    }
-                                },
-                                tooltip: {
-                                    formatter:function(){
-                                        //console.log(this);
-                                        return ' N° ocupados = <b>' + this.y + '</b>';
-                                    }
-                                },
-                                legend: {
-                                    reversed: true
-                                },
-                                plotOptions: {
-                                    series: {
-                                        stacking: 'normal'
-                                    }
-                                },
-                                //colors: ['#7fbeda', '#646cd4', '#9d64d4', '#d364c7', '#d46584', '#d48664'],
-                                series: [data.data_grafico]
-                            });
+                                        text: 'Número de trabajadores del sector'
+                                    },
+                                    subtitle: {
+                                        text: 'DestinoEmpleo en base a los datos del Seguro de Cesantía'
+                                    },
+                                    lang : {
+                                        downloadCSV : 'Descargar CSV',
+                                        downloadJPEG: 'Descargar JPEG',
+                                        downloadPDF : 'Descargar PDF',
+                                        downloadPNG : 'Descargar PNG',
+                                        downloadSVG : 'Descargar SVG',
+                                        downloadXLS : 'Descargar Excel',
+                                        printChart  : 'Imprimir Gráfico',
+                                        viewData    : 'Ver Data'
+                                    },
+                                    exporting: {
+                                        buttons: {
+                                          contextButton: {
+                                            menuItems: [
+                                              'printChart',
+                                              'separator',
+                                              'downloadPNG',
+                                              'downloadJPEG',
+                                              'downloadPDF',
+                                              'downloadSVG',
+                                              'separator',
+                                              'downloadCSV',
+                                              'downloadXLS',
+                                              'viewData'
+                                            ]
+                                          }
+                                        }
+
+                                    },
+                                    xAxis: {
+                                        categories: data.ejeX,
+                                        title : {
+                                            text: 'Sectores'
+                                        }
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        title: {
+                                            text: 'Número de ocupados'
+                                        },
+                                        labels: {
+                                            formatter: function() {
+                                             // if ( this.value > 100000 ) return Highcharts.numberFormat( this.value/1000, 1) + "l";  // maybe only switch if > 1000
+                                              return Highcharts.numberFormat(this.value,0);
+                                            }                
+                                        }
+                                    },
+                                    tooltip: {
+                                        formatter:function(){
+                                            //console.log(this);
+                                            return ' N° ocupados = <b>' + this.y + '</b>';
+                                        }
+                                    },
+                                    legend: {
+                                        reversed: true
+                                    },
+                                    plotOptions: {
+                                        series: {
+                                            stacking: 'normal'
+                                        }
+                                    },
+                                    //colors: ['#7fbeda', '#646cd4', '#9d64d4', '#d364c7', '#d46584', '#d48664'],
+                                    series: [data.data_grafico]
+                                });
+                            }else{
+                                jQuery('#chartdiv6old').html('<br><br><div class="alert alert-danger" role="alert">No existe información asociada a este gráfico!</div>')
+                            }
+                            
+                            
                         });
                 	});
                 
@@ -255,75 +261,79 @@ function graphics1($id_graphics){
                     document.addEventListener('DOMContentLoaded', function () {
                         Highcharts.getJSON('<?php echo get_site_url(); ?>/wp-json/wp/v2/crecimiento_sectores_dashboard/', function (data) {
                             //console.log(data.data_grafico);
-                            var myChart6 = Highcharts.chart('chartdiv6', {
-                                chart: {
-                                    type: 'bar',
-                                    height : 800
-                                },
-                                title: {
-                                    text: 'Número de ocupados'
-                                },
-                                subtitle: {
-                                  //  text: 'Fuente: Gobierno de Chile'
-                                },
-                                lang : {
-                                    downloadCSV : 'Descargar CSV',
-                                    downloadJPEG: 'Descargar JPEG',
-                                    downloadPDF : 'Descargar PDF',
-                                    downloadPNG : 'Descargar PNG',
-                                    downloadSVG : 'Descargar SVG',
-                                    downloadXLS : 'Descargar Excel',
-                                    printChart  : 'Imprimir Gráfico',
-                                    viewData    : 'Ver Data'
-                                },
-                                exporting: {
-                                    buttons: {
-                                      contextButton: {
-                                        menuItems: [
-                                          'printChart',
-                                          'separator',
-                                          'downloadPNG',
-                                          'downloadJPEG',
-                                          'downloadPDF',
-                                          'downloadSVG',
-                                          'separator',
-                                          'downloadCSV',
-                                          'downloadXLS',
-                                          'viewData'
-                                        ]
-                                      }
-                                    }
-
-                                },
-                                xAxis: {
-                                    categories: data.ejeX,
-                                    title : {
-                                        text: 'Sectores'
-                                    }
-                                },
-                                yAxis: {
-                                    min: 0,
+                            if(data){
+                                var myChart6 = Highcharts.chart('chartdiv6', {
+                                    chart: {
+                                        type: 'bar',
+                                        height : 800
+                                    },
                                     title: {
-                                        text: 'Número de ocupados'
-                                    }
-                                },
-                                tooltip: {
-                                    formatter:function(){
-                                        //console.log(this);
-                                        return ' N° ocupados = <b>' + this.y + '</b>';
-                                    }
-                                },
-                                legend: {
-                                    reversed: true
-                                },
-                                plotOptions: {
-                                    series: {
-                                        stacking: 'normal'
-                                    }
-                                },
-                                //colors: ['#7fbeda', '#646cd4', '#9d64d4', '#d364c7', '#d46584', '#d48664'],
-                                series: [data.data_grafico]
-                            });
+                                        text: 'Número de trabajadores del sector'
+                                    },
+                                    subtitle: {
+                                        text: 'DestinoEmpleo en base a los datos del Seguro de Cesantía'
+                                    },
+                                    lang : {
+                                        downloadCSV : 'Descargar CSV',
+                                        downloadJPEG: 'Descargar JPEG',
+                                        downloadPDF : 'Descargar PDF',
+                                        downloadPNG : 'Descargar PNG',
+                                        downloadSVG : 'Descargar SVG',
+                                        downloadXLS : 'Descargar Excel',
+                                        printChart  : 'Imprimir Gráfico',
+                                        viewData    : 'Ver Data'
+                                    },
+                                    exporting: {
+                                        buttons: {
+                                          contextButton: {
+                                            menuItems: [
+                                              'printChart',
+                                              'separator',
+                                              'downloadPNG',
+                                              'downloadJPEG',
+                                              'downloadPDF',
+                                              'downloadSVG',
+                                              'separator',
+                                              'downloadCSV',
+                                              'downloadXLS',
+                                              'viewData'
+                                            ]
+                                          }
+                                        }
+
+                                    },
+                                    xAxis: {
+                                        categories: data.ejeX,
+                                        title : {
+                                            text: 'Sectores'
+                                        }
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        title: {
+                                            text: 'Número de ocupados'
+                                        }
+                                    },
+                                    tooltip: {
+                                        formatter:function(){
+                                            //console.log(this);
+                                            return ' N° ocupados = <b>' + this.y + '</b>';
+                                        }
+                                    },
+                                    legend: {
+                                        reversed: true
+                                    },
+                                    plotOptions: {
+                                        series: {
+                                            stacking: 'normal'
+                                        }
+                                    },
+                                    //colors: ['#7fbeda', '#646cd4', '#9d64d4', '#d364c7', '#d46584', '#d48664'],
+                                    series: [data.data_grafico]
+                                });
+                            }else{
+                                jQuery('#chartdiv6old').html('<br><br><div class="alert alert-danger" role="alert">No existe información asociada a este gráfico!</div>')
+                            }
                         });
                 });
                 </script>
@@ -354,75 +364,79 @@ function graphics2($id_graphics){
                     document.addEventListener('DOMContentLoaded', function () {
                         Highcharts.getJSON('<?php echo get_site_url(); ?>/wp-json/wp/v2/contratos_indefinidos_sectores_dashboard_old/', function (data) {
                             //console.log(data.data_grafico);
-                            var myChart6 = Highcharts.chart('chartdiv6old', {
-                                chart: {
-                                    type: 'bar',
-                                    height : 800
-                                },
-                                title: {
-                                    text: 'XX% de contratos indefinidos'
-                                },
-                                subtitle: {
-                                   // text: 'Fuente: Gobierno de Chile'
-                                },
-                                lang : {
-                                    downloadCSV : 'Descargar CSV',
-                                    downloadJPEG: 'Descargar JPEG',
-                                    downloadPDF : 'Descargar PDF',
-                                    downloadPNG : 'Descargar PNG',
-                                    downloadSVG : 'Descargar SVG',
-                                    downloadXLS : 'Descargar Excel',
-                                    printChart  : 'Imprimir Gráfico',
-                                    viewData    : 'Ver Data'
-                                },
-                                exporting: {
-                                    buttons: {
-                                      contextButton: {
-                                        menuItems: [
-                                          'printChart',
-                                          'separator',
-                                          'downloadPNG',
-                                          'downloadJPEG',
-                                          'downloadPDF',
-                                          'downloadSVG',
-                                          'separator',
-                                          'downloadCSV',
-                                          'downloadXLS',
-                                          'viewData'
-                                        ]
-                                      }
-                                    }
-
-                                },
-                                xAxis: {
-                                    categories: data.ejeX,
-                                    title : {
-                                        text: 'Sectores'
-                                    }
-                                },
-                                yAxis: {
-                                    min: 0,
+                            if(data){
+                                var myChart6 = Highcharts.chart('chartdiv6old', {
+                                    chart: {
+                                        type: 'bar',
+                                        height : 800
+                                    },
                                     title: {
                                         text: 'XX% de contratos indefinidos'
-                                    }
-                                },
-                                tooltip: {
-                                    formatter:function(){
-                                        //console.log(this);
-                                        return this.key+' = <b>' + this.y + ' %</b>';
-                                    }
-                                },
-                                legend: {
-                                    reversed: true
-                                },
-                                plotOptions: {
-                                    series: {
-                                        stacking: 'normal'
-                                    }
-                                },
-                                //colors: ['#7fbeda', '#646cd4', '#9d64d4', '#d364c7', '#d46584', '#d48664'],
-                                series: [data.data_grafico]
-                            });
+                                    },
+                                    subtitle: {
+                                       // text: 'Fuente: Gobierno de Chile'
+                                    },
+                                    lang : {
+                                        downloadCSV : 'Descargar CSV',
+                                        downloadJPEG: 'Descargar JPEG',
+                                        downloadPDF : 'Descargar PDF',
+                                        downloadPNG : 'Descargar PNG',
+                                        downloadSVG : 'Descargar SVG',
+                                        downloadXLS : 'Descargar Excel',
+                                        printChart  : 'Imprimir Gráfico',
+                                        viewData    : 'Ver Data'
+                                    },
+                                    exporting: {
+                                        buttons: {
+                                          contextButton: {
+                                            menuItems: [
+                                              'printChart',
+                                              'separator',
+                                              'downloadPNG',
+                                              'downloadJPEG',
+                                              'downloadPDF',
+                                              'downloadSVG',
+                                              'separator',
+                                              'downloadCSV',
+                                              'downloadXLS',
+                                              'viewData'
+                                            ]
+                                          }
+                                        }
+
+                                    },
+                                    xAxis: {
+                                        categories: data.ejeX,
+                                        title : {
+                                            text: 'Sectores'
+                                        }
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        title: {
+                                            text: 'XX% de contratos indefinidos'
+                                        }
+                                    },
+                                    tooltip: {
+                                        formatter:function(){
+                                            //console.log(this);
+                                            return this.key+' = <b>' + this.y + ' %</b>';
+                                        }
+                                    },
+                                    legend: {
+                                        reversed: true
+                                    },
+                                    plotOptions: {
+                                        series: {
+                                            stacking: 'normal'
+                                        }
+                                    },
+                                    //colors: ['#7fbeda', '#646cd4', '#9d64d4', '#d364c7', '#d46584', '#d48664'],
+                                    series: [data.data_grafico]
+                                });
+                            }else{
+                                jQuery('#chartdiv6old').html('<br><br><div class="alert alert-danger" role="alert">No existe información asociada a este gráfico!</div>')
+                            }
                         });
                 });
                 </script>
@@ -432,75 +446,79 @@ function graphics2($id_graphics){
                     document.addEventListener('DOMContentLoaded', function () {
                         Highcharts.getJSON('<?php echo get_site_url(); ?>/wp-json/wp/v2/contratos_indefinidos_sectores_dashboard/', function (data) {
                             //console.log(data.data_grafico);
-                            var myChart6 = Highcharts.chart('chartdiv6', {
-                                chart: {
-                                    type: 'bar',
-                                    height: 800
-                                },
-                                title: {
-                                    text: 'XX% de contratos indefinidos'
-                                },
-                                subtitle: {
-                                    //text: 'Fuente: Gobierno de Chile'
-                                },
-                                lang : {
-                                    downloadCSV : 'Descargar CSV',
-                                    downloadJPEG: 'Descargar JPEG',
-                                    downloadPDF : 'Descargar PDF',
-                                    downloadPNG : 'Descargar PNG',
-                                    downloadSVG : 'Descargar SVG',
-                                    downloadXLS : 'Descargar Excel',
-                                    printChart  : 'Imprimir Gráfico',
-                                    viewData    : 'Ver Data'
-                                },
-                                exporting: {
-                                    buttons: {
-                                      contextButton: {
-                                        menuItems: [
-                                          'printChart',
-                                          'separator',
-                                          'downloadPNG',
-                                          'downloadJPEG',
-                                          'downloadPDF',
-                                          'downloadSVG',
-                                          'separator',
-                                          'downloadCSV',
-                                          'downloadXLS',
-                                          'viewData'
-                                        ]
-                                      }
-                                    }
-
-                                },
-                                xAxis: {
-                                    categories: data.ejeX,
-                                    title : {
-                                        text: 'Sectores'
-                                    }
-                                },
-                                yAxis: {
-                                    min: 0,
+                            if(data){
+                                var myChart6 = Highcharts.chart('chartdiv6', {
+                                    chart: {
+                                        type: 'bar',
+                                        height: 800
+                                    },
                                     title: {
                                         text: 'XX% de contratos indefinidos'
-                                    }
-                                },
-                                tooltip: {
-                                    formatter:function(){
-                                       //console.log(this);
-                                        return this.key+' = <b>' + this.y + ' %</b>';
-                                    }
-                                },
-                                legend: {
-                                    reversed: true
-                                },
-                                plotOptions: {
-                                    series: {
-                                        stacking: 'normal'
-                                    }
-                                },
-                                //colors: ['#7fbeda', '#646cd4', '#9d64d4', '#d364c7', '#d46584', '#d48664'],
-                                series: [data.data_grafico]
-                            });
+                                    },
+                                    subtitle: {
+                                        //text: 'Fuente: Gobierno de Chile'
+                                    },
+                                    lang : {
+                                        downloadCSV : 'Descargar CSV',
+                                        downloadJPEG: 'Descargar JPEG',
+                                        downloadPDF : 'Descargar PDF',
+                                        downloadPNG : 'Descargar PNG',
+                                        downloadSVG : 'Descargar SVG',
+                                        downloadXLS : 'Descargar Excel',
+                                        printChart  : 'Imprimir Gráfico',
+                                        viewData    : 'Ver Data'
+                                    },
+                                    exporting: {
+                                        buttons: {
+                                          contextButton: {
+                                            menuItems: [
+                                              'printChart',
+                                              'separator',
+                                              'downloadPNG',
+                                              'downloadJPEG',
+                                              'downloadPDF',
+                                              'downloadSVG',
+                                              'separator',
+                                              'downloadCSV',
+                                              'downloadXLS',
+                                              'viewData'
+                                            ]
+                                          }
+                                        }
+
+                                    },
+                                    xAxis: {
+                                        categories: data.ejeX,
+                                        title : {
+                                            text: 'Sectores'
+                                        }
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        title: {
+                                            text: 'XX% de contratos indefinidos'
+                                        }
+                                    },
+                                    tooltip: {
+                                        formatter:function(){
+                                           //console.log(this);
+                                            return this.key+' = <b>' + this.y + ' %</b>';
+                                        }
+                                    },
+                                    legend: {
+                                        reversed: true
+                                    },
+                                    plotOptions: {
+                                        series: {
+                                            stacking: 'normal'
+                                        }
+                                    },
+                                    //colors: ['#7fbeda', '#646cd4', '#9d64d4', '#d364c7', '#d46584', '#d48664'],
+                                    series: [data.data_grafico]
+                                });
+                            }else{
+                                jQuery('#chartdiv6old').html('<br><br><div class="alert alert-danger" role="alert">No existe información asociada a este gráfico!</div>')
+                            }
                         });
                 });
                 </script>
@@ -530,75 +548,79 @@ function graphics3($id_graphics){
                     document.addEventListener('DOMContentLoaded', function () {
                         Highcharts.getJSON('<?php echo get_site_url(); ?>/wp-json/wp/v2/contratos_indefinidos_sectores_variacion_dashboard_old/', function (data) {
                             //console.log(data.data_grafico);
-                            var myChart6 = Highcharts.chart('chartdiv6old', {
-                                chart: {
-                                    type: 'bar',
-                                    height: 800
-                                },
-                                title: {
-                                    text: '% de contratos indefinidos'
-                                },
-                                subtitle: {
-                                   // text: 'Fuente: Gobierno de Chile'
-                                },
-                                lang : {
-                                    downloadCSV : 'Descargar CSV',
-                                    downloadJPEG: 'Descargar JPEG',
-                                    downloadPDF : 'Descargar PDF',
-                                    downloadPNG : 'Descargar PNG',
-                                    downloadSVG : 'Descargar SVG',
-                                    downloadXLS : 'Descargar Excel',
-                                    printChart  : 'Imprimir Gráfico',
-                                    viewData    : 'Ver Data'
-                                },
-                                exporting: {
-                                    buttons: {
-                                      contextButton: {
-                                        menuItems: [
-                                          'printChart',
-                                          'separator',
-                                          'downloadPNG',
-                                          'downloadJPEG',
-                                          'downloadPDF',
-                                          'downloadSVG',
-                                          'separator',
-                                          'downloadCSV',
-                                          'downloadXLS',
-                                          'viewData'
-                                        ]
-                                      }
-                                    }
-
-                                },
-                                xAxis: {
-                                    categories: data.ejeX,
-                                    title : {
-                                        text: 'Sectores'
-                                    }
-                                },
-                                yAxis: {
-                                    min: 0,
+                            if(data){
+                                var myChart6 = Highcharts.chart('chartdiv6old', {
+                                    chart: {
+                                        type: 'bar',
+                                        height: 800
+                                    },
                                     title: {
                                         text: '% de contratos indefinidos'
-                                    }
-                                },
-                                tooltip: {
-                                    formatter:function(){
-                                        //console.log(this);
-                                        return this.key+' = <b>' + this.y + ' %</b>';
-                                    }
-                                },
-                                legend: {
-                                    reversed: true
-                                },
-                                plotOptions: {
-                                    series: {
-                                        stacking: 'normal'
-                                    }
-                                },
-                                //colors: ['#7fbeda', '#646cd4', '#9d64d4', '#d364c7', '#d46584', '#d48664'],
-                                series: [data.data_grafico]
-                            });
+                                    },
+                                    subtitle: {
+                                       // text: 'Fuente: Gobierno de Chile'
+                                    },
+                                    lang : {
+                                        downloadCSV : 'Descargar CSV',
+                                        downloadJPEG: 'Descargar JPEG',
+                                        downloadPDF : 'Descargar PDF',
+                                        downloadPNG : 'Descargar PNG',
+                                        downloadSVG : 'Descargar SVG',
+                                        downloadXLS : 'Descargar Excel',
+                                        printChart  : 'Imprimir Gráfico',
+                                        viewData    : 'Ver Data'
+                                    },
+                                    exporting: {
+                                        buttons: {
+                                          contextButton: {
+                                            menuItems: [
+                                              'printChart',
+                                              'separator',
+                                              'downloadPNG',
+                                              'downloadJPEG',
+                                              'downloadPDF',
+                                              'downloadSVG',
+                                              'separator',
+                                              'downloadCSV',
+                                              'downloadXLS',
+                                              'viewData'
+                                            ]
+                                          }
+                                        }
+
+                                    },
+                                    xAxis: {
+                                        categories: data.ejeX,
+                                        title : {
+                                            text: 'Sectores'
+                                        }
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        title: {
+                                            text: '% de contratos indefinidos'
+                                        }
+                                    },
+                                    tooltip: {
+                                        formatter:function(){
+                                            //console.log(this);
+                                            return this.key+' = <b>' + this.y + ' %</b>';
+                                        }
+                                    },
+                                    legend: {
+                                        reversed: true
+                                    },
+                                    plotOptions: {
+                                        series: {
+                                            stacking: 'normal'
+                                        }
+                                    },
+                                    //colors: ['#7fbeda', '#646cd4', '#9d64d4', '#d364c7', '#d46584', '#d48664'],
+                                    series: [data.data_grafico]
+                                });
+                            }else{
+                                jQuery('#chartdiv6old').html('<br><br><div class="alert alert-danger" role="alert">No existe información asociada a este gráfico!</div>')
+                            }
                         });
                 });
                 </script>
@@ -608,75 +630,79 @@ function graphics3($id_graphics){
                     document.addEventListener('DOMContentLoaded', function () {
                         Highcharts.getJSON('<?php echo get_site_url(); ?>/wp-json/wp/v2/contratos_indefinidos_sectores_variacion_dashboard/', function (data) {
                             //console.log(data.data_grafico);
-                            var myChart6 = Highcharts.chart('chartdiv6', {
-                                chart: {
-                                    type: 'bar',
-                                    height: 800
-                                },
-                                title: {
-                                    text: '% de contratos indefinidos'
-                                },
-                                subtitle: {
-                                    //text: 'Fuente: Gobierno de Chile'
-                                },
-                                lang : {
-                                    downloadCSV : 'Descargar CSV',
-                                    downloadJPEG: 'Descargar JPEG',
-                                    downloadPDF : 'Descargar PDF',
-                                    downloadPNG : 'Descargar PNG',
-                                    downloadSVG : 'Descargar SVG',
-                                    downloadXLS : 'Descargar Excel',
-                                    printChart  : 'Imprimir Gráfico',
-                                    viewData    : 'Ver Data'
-                                },
-                                exporting: {
-                                    buttons: {
-                                      contextButton: {
-                                        menuItems: [
-                                          'printChart',
-                                          'separator',
-                                          'downloadPNG',
-                                          'downloadJPEG',
-                                          'downloadPDF',
-                                          'downloadSVG',
-                                          'separator',
-                                          'downloadCSV',
-                                          'downloadXLS',
-                                          'viewData'
-                                        ]
-                                      }
-                                    }
-
-                                },
-                                xAxis: {
-                                    categories: data.ejeX,
-                                    title : {
-                                        text: 'Sectores'
-                                    }
-                                },
-                                yAxis: {
-                                    min: 0,
+                            if(data){
+                                var myChart6 = Highcharts.chart('chartdiv6', {
+                                    chart: {
+                                        type: 'bar',
+                                        height: 800
+                                    },
                                     title: {
                                         text: '% de contratos indefinidos'
-                                    }
-                                },
-                                tooltip: {
-                                    formatter:function(){
-                                       //console.log(this);
-                                        return this.key+' = <b>' + this.y + ' %</b>';
-                                    }
-                                },
-                                legend: {
-                                    reversed: true
-                                },
-                                plotOptions: {
-                                    series: {
-                                        stacking: 'normal'
-                                    }
-                                },
-                                //colors: ['#7fbeda', '#646cd4', '#9d64d4', '#d364c7', '#d46584', '#d48664'],
-                                series: [data.data_grafico]
-                            });
+                                    },
+                                    subtitle: {
+                                        //text: 'Fuente: Gobierno de Chile'
+                                    },
+                                    lang : {
+                                        downloadCSV : 'Descargar CSV',
+                                        downloadJPEG: 'Descargar JPEG',
+                                        downloadPDF : 'Descargar PDF',
+                                        downloadPNG : 'Descargar PNG',
+                                        downloadSVG : 'Descargar SVG',
+                                        downloadXLS : 'Descargar Excel',
+                                        printChart  : 'Imprimir Gráfico',
+                                        viewData    : 'Ver Data'
+                                    },
+                                    exporting: {
+                                        buttons: {
+                                          contextButton: {
+                                            menuItems: [
+                                              'printChart',
+                                              'separator',
+                                              'downloadPNG',
+                                              'downloadJPEG',
+                                              'downloadPDF',
+                                              'downloadSVG',
+                                              'separator',
+                                              'downloadCSV',
+                                              'downloadXLS',
+                                              'viewData'
+                                            ]
+                                          }
+                                        }
+
+                                    },
+                                    xAxis: {
+                                        categories: data.ejeX,
+                                        title : {
+                                            text: 'Sectores'
+                                        }
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        title: {
+                                            text: '% de contratos indefinidos'
+                                        }
+                                    },
+                                    tooltip: {
+                                        formatter:function(){
+                                           //console.log(this);
+                                            return this.key+' = <b>' + this.y + ' %</b>';
+                                        }
+                                    },
+                                    legend: {
+                                        reversed: true
+                                    },
+                                    plotOptions: {
+                                        series: {
+                                            stacking: 'normal'
+                                        }
+                                    },
+                                    //colors: ['#7fbeda', '#646cd4', '#9d64d4', '#d364c7', '#d46584', '#d48664'],
+                                    series: [data.data_grafico]
+                                });
+                            }else{
+                                jQuery('#chartdiv6').html('<br><br><div class="alert alert-danger" role="alert">No existe información asociada a este gráfico!</div>')
+                            }
                         });
                 });
                 </script>
@@ -1143,76 +1169,82 @@ function graphics7($id_graphics){
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
                         Highcharts.getJSON('<?php echo get_site_url(); ?>/wp-json/wp/v2/crecimiento_migrantes_setores_dashboard_old/', function (data) {
-                            //console.log(data.data_grafico);
-                            var myChart6 = Highcharts.chart('chartdiv6old', {
-                                chart: {
-                                    type: 'bar',
-                                    height: 800
-                                },
-                                title: {
-                                    text: '% de migrantes por sector'
-                                },
-                                subtitle: {
-                                 //   text: 'Fuente: Gobierno de Chile'
-                                },
-                                lang : {
-                                    downloadCSV : 'Descargar CSV',
-                                    downloadJPEG: 'Descargar JPEG',
-                                    downloadPDF : 'Descargar PDF',
-                                    downloadPNG : 'Descargar PNG',
-                                    downloadSVG : 'Descargar SVG',
-                                    downloadXLS : 'Descargar Excel',
-                                    printChart  : 'Imprimir Gráfico',
-                                    viewData    : 'Ver Data'
-                                },
-                                exporting: {
-                                    buttons: {
-                                      contextButton: {
-                                        menuItems: [
-                                          'printChart',
-                                          'separator',
-                                          'downloadPNG',
-                                          'downloadJPEG',
-                                          'downloadPDF',
-                                          'downloadSVG',
-                                          'separator',
-                                          'downloadCSV',
-                                          'downloadXLS',
-                                          'viewData'
-                                        ]
-                                      }
-                                    }
 
-                                },
-                                xAxis: {
-                                    categories: data.ejeX,
-                                    title : {
-                                        text: 'Sectores'
-                                    }
-                                },
-                                yAxis: {
-                                    min: 0,
+                            if(data){
+                                //console.log(data.data_grafico);
+                                var myChart6 = Highcharts.chart('chartdiv6old', {
+                                    chart: {
+                                        type: 'bar',
+                                        height: 800
+                                    },
                                     title: {
                                         text: '% de migrantes por sector'
-                                    }
-                                },
-                                tooltip: {
-                                    formatter:function(){
-                                        //console.log(this);
-                                        return this.key+' = <b>' + this.y + ' %</b>';
-                                    }
-                                },
-                                legend: {
-                                    reversed: true
-                                },
-                                plotOptions: {
-                                    series: {
-                                        stacking: 'normal'
-                                    }
-                                },
-                                //colors: ['#7fbeda', '#646cd4', '#9d64d4', '#d364c7', '#d46584', '#d48664'],
-                                series: [data.data_grafico]
-                            });
+                                    },
+                                    subtitle: {
+                                     //   text: 'Fuente: Gobierno de Chile'
+                                    },
+                                    lang : {
+                                        downloadCSV : 'Descargar CSV',
+                                        downloadJPEG: 'Descargar JPEG',
+                                        downloadPDF : 'Descargar PDF',
+                                        downloadPNG : 'Descargar PNG',
+                                        downloadSVG : 'Descargar SVG',
+                                        downloadXLS : 'Descargar Excel',
+                                        printChart  : 'Imprimir Gráfico',
+                                        viewData    : 'Ver Data'
+                                    },
+                                    exporting: {
+                                        buttons: {
+                                          contextButton: {
+                                            menuItems: [
+                                              'printChart',
+                                              'separator',
+                                              'downloadPNG',
+                                              'downloadJPEG',
+                                              'downloadPDF',
+                                              'downloadSVG',
+                                              'separator',
+                                              'downloadCSV',
+                                              'downloadXLS',
+                                              'viewData'
+                                            ]
+                                          }
+                                        }
+
+                                    },
+                                    xAxis: {
+                                        categories: data.ejeX,
+                                        title : {
+                                            text: 'Sectores'
+                                        }
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        title: {
+                                            text: '% de migrantes por sector'
+                                        }
+                                    },
+                                    tooltip: {
+                                        formatter:function(){
+                                            //console.log(this);
+                                            return this.key+' = <b>' + this.y + ' %</b>';
+                                        }
+                                    },
+                                    legend: {
+                                        reversed: true
+                                    },
+                                    plotOptions: {
+                                        series: {
+                                            stacking: 'normal'
+                                        }
+                                    },
+                                    //colors: ['#7fbeda', '#646cd4', '#9d64d4', '#d364c7', '#d46584', '#d48664'],
+                                    series: [data.data_grafico]
+                                });
+                            }else{
+                                jQuery('#chartdiv6old').html('<br><br><div class="alert alert-danger" role="alert">No existe información asociada a este gráfico!</div>'),
+                            }
+                            
                         });
                 });
                 </script>
@@ -1222,75 +1254,79 @@ function graphics7($id_graphics){
                     document.addEventListener('DOMContentLoaded', function () {
                         Highcharts.getJSON('<?php echo get_site_url(); ?>/wp-json/wp/v2/crecimiento_migrantes_setores_dashboard/', function (data) {
                             //console.log(data.data_grafico);
-                            var myChart6 = Highcharts.chart('chartdiv6', {
-                                chart: {
-                                    type: 'bar',
-                                    height: 800
-                                },
-                                title: {
-                                  // text: '% de migrantes por sector'
-                                },
-                                subtitle: {
-                                    text: 'Fuente: Gobierno de Chile'
-                                },
-                                lang : {
-                                    downloadCSV : 'Descargar CSV',
-                                    downloadJPEG: 'Descargar JPEG',
-                                    downloadPDF : 'Descargar PDF',
-                                    downloadPNG : 'Descargar PNG',
-                                    downloadSVG : 'Descargar SVG',
-                                    downloadXLS : 'Descargar Excel',
-                                    printChart  : 'Imprimir Gráfico',
-                                    viewData    : 'Ver Data'
-                                },
-                                exporting: {
-                                    buttons: {
-                                      contextButton: {
-                                        menuItems: [
-                                          'printChart',
-                                          'separator',
-                                          'downloadPNG',
-                                          'downloadJPEG',
-                                          'downloadPDF',
-                                          'downloadSVG',
-                                          'separator',
-                                          'downloadCSV',
-                                          'downloadXLS',
-                                          'viewData'
-                                        ]
-                                      }
-                                    }
-
-                                },
-                                xAxis: {
-                                    categories: data.ejeX,
-                                    title : {
-                                        text: 'Sectores'
-                                    }
-                                },
-                                yAxis: {
-                                    min: 0,
+                            if(data){
+                                var myChart6 = Highcharts.chart('chartdiv6', {
+                                    chart: {
+                                        type: 'bar',
+                                        height: 800
+                                    },
                                     title: {
-                                        text: '% de migrantes por sector'
-                                    }
-                                },
-                                tooltip: {
-                                    formatter:function(){
-                                       //console.log(this);
-                                        return this.key+' = <b>' + this.y + ' %</b>';
-                                    }
-                                },
-                                legend: {
-                                    reversed: true
-                                },
-                                plotOptions: {
-                                    series: {
-                                        stacking: 'normal'
-                                    }
-                                },
-                                //colors: ['#7fbeda', '#646cd4', '#9d64d4', '#d364c7', '#d46584', '#d48664'],
-                                series: [data.data_grafico]
-                            });
+                                      // text: '% de migrantes por sector'
+                                    },
+                                    subtitle: {
+                                        text: 'Fuente: Gobierno de Chile'
+                                    },
+                                    lang : {
+                                        downloadCSV : 'Descargar CSV',
+                                        downloadJPEG: 'Descargar JPEG',
+                                        downloadPDF : 'Descargar PDF',
+                                        downloadPNG : 'Descargar PNG',
+                                        downloadSVG : 'Descargar SVG',
+                                        downloadXLS : 'Descargar Excel',
+                                        printChart  : 'Imprimir Gráfico',
+                                        viewData    : 'Ver Data'
+                                    },
+                                    exporting: {
+                                        buttons: {
+                                          contextButton: {
+                                            menuItems: [
+                                              'printChart',
+                                              'separator',
+                                              'downloadPNG',
+                                              'downloadJPEG',
+                                              'downloadPDF',
+                                              'downloadSVG',
+                                              'separator',
+                                              'downloadCSV',
+                                              'downloadXLS',
+                                              'viewData'
+                                            ]
+                                          }
+                                        }
+
+                                    },
+                                    xAxis: {
+                                        categories: data.ejeX,
+                                        title : {
+                                            text: 'Sectores'
+                                        }
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        title: {
+                                            text: '% de migrantes por sector'
+                                        }
+                                    },
+                                    tooltip: {
+                                        formatter:function(){
+                                           //console.log(this);
+                                            return this.key+' = <b>' + this.y + ' %</b>';
+                                        }
+                                    },
+                                    legend: {
+                                        reversed: true
+                                    },
+                                    plotOptions: {
+                                        series: {
+                                            stacking: 'normal'
+                                        }
+                                    },
+                                    //colors: ['#7fbeda', '#646cd4', '#9d64d4', '#d364c7', '#d46584', '#d48664'],
+                                    series: [data.data_grafico]
+                                });
+                            }else{
+                                jQuery('#chartdiv6').html('<br><br><div class="alert alert-danger" role="alert">No existe información asociada a este gráfico!</div>');
+                            }
                         });
                 });
                 </script>
@@ -1314,7 +1350,7 @@ function graphics8($id_graphics){
         		<?php echo btn_state_grafico($id_graphics); ?>
         		<a href="<?php echo get_site_url(); ?>/wp-admin/admin.php?page=grafico_load" class="btn btn-chilevalora">&laquo; Volver</a>
         	</div>
-            <h2>% de mujeres por sector</h2>
+            <h2>Participación de mujeres en el tiempo</h2>
             <div class="grafica">
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
@@ -1326,10 +1362,10 @@ function graphics8($id_graphics){
                                     height: 800
                                 },
                                 title: {
-                                    text: '% de mujeres por sector'
+                                    text: 'Porcentaje de mujeres que trabajan en los sectores'
                                 },
                                 subtitle: {
-                                   // text: 'Fuente: Gobierno de Chile'
+                                    text: 'DestinoEmpleo en base a los datos del Seguro de Cesantía'
                                 },
                                 lang : {
                                     downloadCSV : 'Descargar CSV',
@@ -1369,7 +1405,7 @@ function graphics8($id_graphics){
                                 yAxis: {
                                     min: 0,
                                     title: {
-                                        text: '% de mujeres por sector'
+                                        text: 'Porcentaje de mujeres'
                                     }
                                 },
                                 tooltip: {
@@ -1392,6 +1428,7 @@ function graphics8($id_graphics){
                         });
                 });
                 </script>
+                <hr>
                 <div id="chartdiv6old" class="chartdiv"></div>
 
                 <script>
@@ -1404,10 +1441,10 @@ function graphics8($id_graphics){
                                     height: 800
                                 },
                                 title: {
-                                    text: '% de mujeres por sector'
+                                    text: 'Porcentaje de mujeres que trabajan en los sectores'
                                 },
                                 subtitle: {
-                                   // text: 'Fuente: Gobierno de Chile'
+                                    text: 'DestinoEmpleo en base a los datos del Seguro de Cesantía'
                                 },
                                 lang : {
                                     downloadCSV : 'Descargar CSV',
@@ -1447,7 +1484,7 @@ function graphics8($id_graphics){
                                 yAxis: {
                                     min: 0,
                                     title: {
-                                        text: '% de mujeres por sector'
+                                        text: 'Porcentaje de mujeres'
                                     }
                                 },
                                 tooltip: {
@@ -1490,7 +1527,7 @@ function graphics9($id_graphics){
         		<?php echo btn_state_grafico($id_graphics); ?>
         		<a href="<?php echo get_site_url(); ?>/wp-admin/admin.php?page=grafico_load" class="btn btn-chilevalora">&laquo; Volver</a>
         	</div>
-            <h2>Participación en distintos sectores</h2>
+            <h2>Presencia de la ocupación en los diferentes sectores productivos</h2>
             <div class="grafica">
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
@@ -1502,10 +1539,10 @@ function graphics9($id_graphics){
                                     height: 800
                                 },
                                 title: {
-                                    text: 'Participación en distintos sectores'
+                                    text: 'Distribución de la ocupación por sector productivo'
                                 },
                                 subtitle: {
-                                  //  text: 'Fuente: Gobierno de Chile'
+                                    text: 'DestinoEmpleo en base a Casen 2017'
                                 },
                                 lang : {
                                     downloadCSV : 'Descargar CSV',
@@ -1545,7 +1582,7 @@ function graphics9($id_graphics){
                                 yAxis: {
                                     min: 0,
                                     title: {
-                                        text: 'Participación en distintos sectores'
+                                        //text: 'Participación en distintos sectores'
                                     }
                                 },
                                 tooltip: {
@@ -1589,7 +1626,7 @@ function graphics10($id_graphics){
         		<?php echo btn_state_grafico($id_graphics); ?>
         		<a href="<?php echo get_site_url(); ?>/wp-admin/admin.php?page=grafico_load" class="btn btn-chilevalora">&laquo; Volver</a>
         	</div>
-            <h2>Tasa de crecimiento de ocupados</h2>
+            <h2>Evolución del número de trabajadores</h2>
             <div class="grafica">
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
@@ -1601,10 +1638,10 @@ function graphics10($id_graphics){
                                     height: 1150
                                 },
                                 title: {
-                                    text: 'Tasa de crecimiento de ocupados'
+                                    text: 'Ocupados'
                                 },
                                 subtitle: {
-                                  //  text: 'Fuente: Gobierno de Chile'
+                                    text: 'DestinoEmpleo en base a Casen 2015 y 2017'
                                 },
                                 lang : {
                                     downloadCSV : 'Descargar CSV',
@@ -1638,13 +1675,13 @@ function graphics10($id_graphics){
                                 xAxis: {
                                     categories: data.ejeX,
                                     title : {
-                                        text: 'Sectores'
+                                        text: 'Ocupados'
                                     }
                                 },
                                 yAxis: {
                                     min: 0,
                                     title: {
-                                        text: 'Tasa de crecimiento de ocupados'
+                                        text: 'Número de trabajadores en la ocupación'
                                     }
                                 },
                                 tooltip: {
@@ -1679,10 +1716,10 @@ function graphics10($id_graphics){
                                     height: 800
                                 },
                                 title: {
-                                    text: 'Tasa de crecimiento de ocupados'
+                                    text: 'Ocupados'
                                 },
                                 subtitle: {
-                                 //   text: 'Fuente: Gobierno de Chile'
+                                    text: 'DestinoEmpleo en base a Casen 2015 y 2017'
                                 },
                                 lang : {
                                     downloadCSV : 'Descargar CSV',
@@ -1716,13 +1753,13 @@ function graphics10($id_graphics){
                                 xAxis: {
                                     categories: data.ejeX,
                                     title : {
-                                        text: 'Sectores'
+                                        text: 'Ocupados'
                                     }
                                 },
                                 yAxis: {
                                     min: 0,
                                     title: {
-                                        text: 'Tasa de crecimiento de ocupados'
+                                        text: 'Número de trabajadores en la ocupación'
                                     }
                                 },
                                 tooltip: {

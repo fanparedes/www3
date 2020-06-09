@@ -1,0 +1,272 @@
+[
+   {
+      "source": "Adobe Illustrator",
+      "target": "Community Manager",
+      "value": "238"
+   },
+   {
+      "source": "Adobe Illustrator",
+      "target": "Especialista UX",
+      "value": "173"
+   },
+   {
+      "source": "Adobe Illustrator",
+      "target": "Diseñador Gráfico",
+      "value": "129"
+   },
+   {
+      "source": "Adobe Illustrator",
+      "target": "Especialista en Marketing Digital",
+      "value": "82"
+   },
+   {
+      "source": "Adobe Illustrator",
+      "target": "Especialista UI",
+      "value": "26"
+   },
+   {
+      "source": "Java Script",
+      "target": "Arquitecto de software",
+      "value": "320"
+   },
+   {
+      "source": "Java Script",
+      "target": "Desarrollador backend",
+      "value": "210"
+   },
+   {
+      "source": "Java Script",
+      "target": "Desarrollador de Software",
+      "value": "235"
+   },
+   {
+      "source": "Java Script",
+      "target": "Desarrollador frontend",
+      "value": "354"
+   },
+   {
+      "source": "Java Script",
+      "target": "Desarrollador Full Stack",
+      "value": "50"
+   },
+   {
+      "source": "Java Script",
+      "target": "Desarrollador móvil",
+      "value": "60"
+   },
+   {
+      "source": "Java Script",
+      "target": "Desarrollador Web y Multimedia",
+      "value": "79"
+   },
+   {
+      "source": "Java Script",
+      "target": "Especialista UI",
+      "value": "150"
+   },
+   {
+      "source": "Java Script",
+      "target": "Especialista UX",
+      "value": "121"
+   },
+   {
+      "source": "HTML",
+      "target": "Científico de datos",
+      "value": "89"
+   },
+   {
+      "source": "HTML",
+      "target": "Community Manager",
+      "value": "90"
+   },
+   {
+      "source": "HTML",
+      "target": "Desarrollador de Software",
+      "value": "46"
+   },
+   {
+      "source": "HTML",
+      "target": "Desarrollador frontend",
+      "value": "85"
+   },
+   {
+      "source": "HTML",
+      "target": "Desarrollador Full Stack",
+      "value": "153"
+   },
+   {
+      "source": "HTML",
+      "target": "Desarrollador móvil",
+      "value": "250"
+   },
+   {
+      "source": "HTML",
+      "target": "Desarrollador Web y Multimedia",
+      "value": "138"
+   },
+   {
+      "source": "HTML",
+      "target": "Diseñador Gráfico",
+      "value": "86"
+   },
+   {
+      "source": "HTML",
+      "target": "Especialista SEO & SEM",
+      "value": "70"
+   },
+   {
+      "source": "HTML",
+      "target": "Especialista UI",
+      "value": "46"
+   },
+   {
+      "source": "HTML",
+      "target": "Especialista UX",
+      "value": "25"
+   },
+   {
+      "source": "Wordpress",
+      "target": "Community Manager",
+      "value": "80"
+   },
+   {
+      "source": "Wordpress",
+      "target": "Diseñador Gráfico",
+      "value": "45"
+   },
+   {
+      "source": "Wordpress",
+      "target": "Especialista E-commerce",
+      "value": "30"
+   },
+   {
+      "source": "Wordpress",
+      "target": "Especialista en Marketing Digital",
+      "value": "54"
+   },
+   {
+      "source": "Wordpress",
+      "target": "Especialista SEO & SEM",
+      "value": "25"
+   },
+   {
+      "source": "Wordpress",
+      "target": "Especialista UI",
+      "value": "84"
+   },
+   {
+      "source": "Docker",
+      "target": "Administrador de sistemas",
+      "value": "320"
+   },
+   {
+      "source": "Analítica",
+      "target": "Analista de datos/BI",
+      "value": "68"
+   },
+   {
+      "source": "Analítica",
+      "target": "Científico de datos",
+      "value": "76"
+   },
+   {
+      "source": "Analítica",
+      "target": "Community Manager",
+      "value": "53"
+   },
+   {
+      "source": "Analítica",
+      "target": "Consultor TIC",
+      "value": "35"
+   },
+   {
+      "source": "Analítica",
+      "target": "Digital Product Manager",
+      "value": "84"
+   },
+   {
+      "source": "Analítica",
+      "target": "Especialista E-commerce",
+      "value": "48"
+   },
+   {
+      "source": "Analítica",
+      "target": "Especialista en Marketing Digital",
+      "value": "36"
+   },
+   {
+      "source": "Analítica",
+      "target": "Especialista SEO & SEM",
+      "value": "63"
+   },
+   {
+      "source": "Analítica",
+      "target": "Ingeniero de datos",
+      "value": "284"
+   },
+   {
+      "source": "Google Analytics",
+      "target": "Community Manager",
+      "value": "256"
+   },
+   {
+      "source": "Google Analytics",
+      "target": "Especialista E-commerce",
+      "value": 183
+   },
+   {
+      "source": "Google Analytics",
+      "target": "Especialista en Marketing Digital",
+      "value": 215
+   },
+   {
+      "source": "Google Analytics",
+      "target": "Especialista SEO & SEM",
+      "value": 139
+   },
+   {
+      "source": "CSS",
+      "target": "Desarrollador de Software",
+      "value": 53
+   },
+   {
+      "source": "CSS",
+      "target": "Desarrollador frontend",
+      "value": 59
+   },
+   {
+      "source": "CSS",
+      "target": "Desarrollador backend",
+      "value": 96
+   },
+   {
+      "source": "CSS",
+      "target": "Desarrollador Full Stack",
+      "value": 43
+   },
+   {
+      "source": "CSS",
+      "target": "Desarrollador Web y Multimedia",
+      "value": 234
+   },
+   {
+      "source": "CSS",
+      "target": "Diseñador Gráfico",
+      "value": 58
+   },
+   {
+      "source": "CSS",
+      "target": "Especialista SEO & SEM",
+      "value": 76
+   },
+   {
+      "source": "CSS",
+      "target": "Especialista UI",
+      "value": 74
+   },
+   {
+      "source": "CSS",
+      "target": "Especialista UX",
+      "value": 153
+   }
+]

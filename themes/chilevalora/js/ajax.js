@@ -144,40 +144,14 @@ jQuery(document).ready(function($) {
 			    	html+= '<ul class="list-group">';
 			    	$.each(response, function(i, item) {
 			    		if ($.inArray(item, items) == -1){
-					  		items.push('<a class="list-group-item list-group-item-action text-left" href="http://chilevalora.dev.cl/' + item.link_frag_u + item.id + '/">' + item.name + '</a>');
+					  		items.push('<a class="list-group-item list-group-item-action text-left" href="http://chilevalora.dev.cl/' + item.link_frag_u +  item.name_url +'/">' + item.name + '</a>');
 			    		}
 					});
 			    	html+= '</ul>';
 					resultsContainer.append(items.join('')).slideDown();
 			    }
 			});	
-			$.ajax({
-			    type: "post",
-			    dataType: "json",
-			    url: dcms_vars.ajaxurl, // Pon aquí tu URL
-			    data: {
-			        //action: "ajax_home_search",
-			        action: "ajax_home_sub_search",
-			        search: search,
-			        
-			    },
-			    error: function (response) {
-			        console.log(response);
-			    },
-			    success: function (response) {
 
-			    	let items = [];
-			    	let html = '';
-			    	html+= '<ul class="list-group">';
-			    	$.each(response, function(i, item) {
-			    		if ($.inArray(item, items) == -1){
-			    			items.push('<a class="list-group-item list-group-item-action text-left" href="http://chilevalora.dev.cl/' + item.link_frag_u + item.id + item.link_frag_d + item.code + '/">' + item.name + '</a>');
-			    		}
-					});
-			    	html+= '</ul>';
-					resultsContainer.append(items.join('')).slideDown();
-			    }
-			});	
 
 			$.ajax({
 			    type: "post",
@@ -198,7 +172,7 @@ jQuery(document).ready(function($) {
 			    	html+= '<ul class="list-group">';
 			    	$.each(response, function(i, item) {
 			    		if ($.inArray(item, items) == -1){
-			    			items.push('<a class="list-group-item list-group-item-action text-left" href="http://chilevalora.dev.cl/ocupacion-detalle/puesto-de-trabajo/?code_job_position=' + item.code + '&id_occupation=' + item.id + '/">' + item.name + '</a>');
+			    			items.push('<a class="list-group-item list-group-item-action text-left" href="http://chilevalora.dev.cl/ocupacion-detalle/' + item.name_url + '/?code_job_position=' + item.code + '/">' + item.name + '</a>');
 			    		}
 					});
 			    	html+= '</ul>';
@@ -249,7 +223,7 @@ $('#buscar_sectores').keyup(function() {
 			    	html+= '<ul class="list-group">';
 			    	$.each(response, function(i, item) {
 			    		if ($.inArray(item, items) == -1){
-					  		items.push('<a class="list-group-item list-group-item-action text-left" href="http://chilevalora.dev.cl/' + item.link_frag_u + item.id + '/">' + item.name + '</a>');
+					  		items.push('<a class="list-group-item list-group-item-action text-left" href="http://chilevalora.dev.cl/' + item.link_frag_u + item.name_url + '/">' + item.name + '</a>');
 			    		}
 					});
 			    	html+= '</ul>';
@@ -278,7 +252,7 @@ $('#buscar_sectores').keyup(function() {
 			    	html+= '<ul class="list-group">';
 			    	$.each(response, function(i, item) {
 			    		if ($.inArray(item, items) == -1){
-			    			items.push('<a class="list-group-item list-group-item-action text-left" href="http://chilevalora.dev.cl/' + item.link_frag_u + item.id + item.link_frag_d + item.code + '/">' + item.name + '</a>');
+			    			items.push('<a class="list-group-item list-group-item-action text-left" href="http://chilevalora.dev.cl/' + item.link_frag_u + item.name_url + item.link_frag_d + item.code + '/">' + item.name + '</a>');
 			    		}
 					});
 			    	html+= '</ul>';

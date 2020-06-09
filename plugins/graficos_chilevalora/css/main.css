@@ -1,0 +1,34 @@
+.indicator-name{
+	font-weight: bold;
+}
+.indicator-box{
+	background-color: #f9f9f9;
+	border: 1px solid #ccd0d4;
+	box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	padding: 10px;
+}
+.btn-chilevalora {
+    color: #fff;
+	background-color: #304D6F;
+	border-color:#304D6F;
+}
+
+h3{
+	color: #304D6F;
+}
+/* Data tables */
+table thead{
+	background: #304D6F;
+	color: #fff;
+}
+.dataTables_length{
+	display: none;
+}
+.dataTables_filter label{
+	float: right;
+	color: #304D6F;
+	font-weight: bold;
+}
+.dataTables_filter label input{
+	margin-left: 10px;
+}

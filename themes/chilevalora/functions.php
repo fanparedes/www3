@@ -730,7 +730,7 @@ add_action('wp_ajax_dcms_ajax_get_sector', 'dcms_get_sector');
 /** Admin Combo Region */
 function dcms_get_ocupacion(){
 	global $wpdb;
-    $sql_ocupacion = "select id_occupation, name_occupation from cl_occupations order by id_occupation";
+    $sql_ocupacion = "select id_occupation, name_occupation from cl_occupations order by name_occupation asc";
     $rs_ocupacion  = $wpdb->get_results($sql_ocupacion);
     $prov = array();
     $count = 0;
@@ -766,7 +766,7 @@ function ajax_home_search(){
 			'table'			=> 'cl_sectors',
 			'id'			=> 'id_sector',
 			'name'			=> 'name_sector',
-			'link_frag_u'	=> 'sector-detalle/'
+			'link_frag_u'	=> 'detalle_sector/'
 		);
 
 	}else{
@@ -779,8 +779,10 @@ function ajax_home_search(){
 		);
 	}
 	
-	$sql = "SELECT {$columns['id']}, {$columns['name']} 
-			FROM {$columns['table'] }
+	$sql = "SELECT {$columns['id']}, {$columns['name']} , post_name
+			FROM {$columns['table']}
+			inner join wp_postmeta  on (wp_postmeta.meta_value = {$columns['id']}::text)
+			inner join wp_posts on (wp_posts.ID = wp_postmeta.post_id)
 			WHERE LOWER({$columns['name']}) LIKE '%".$search."%' 
 			ORDER BY {$columns['name']} ASC 
 			LIMIT 7";
@@ -795,7 +797,8 @@ function ajax_home_search(){
 
 	        $search_arr[] = array(
 	        	"id" => $result[$columns['id']], 
-	        	"name" => $result[$columns['name']],
+	           	"name_url" => $result['post_name'],
+	           	"name" => $result[$columns['name']],
 	        	"link_frag_u" => $columns['link_frag_u']
 	        );
 	    }
@@ -828,28 +831,14 @@ function ajax_home_sub_search(){
 			'link_frag_d'	=> '/?code_sector='
 		);
 
-		$sql = "SELECT cs.{$columns['id']}, cls.{$columns['code']}, cls.{$columns['name']} from cl_class cls
+		$sql = "SELECT cs.{$columns['id']}, cls.{$columns['code']}, cls.{$columns['name']}, wp.post_name from cl_class cls
 				inner join cl_groups as gp on (cls.id_group = gp.id_group)
 				inner join cl_divisions as dv on (gp.id_division = dv.id_division)
 				inner join cl_sectors as cs on (dv.id_sector = cs.id_sector)
+				inner join wp_posts as wp on (cs.name_sector = wp.post_title)
 				where lower(cls.{$columns['name']}) like '%".$search."%' 
 				ORDER BY {$columns['name']} ASC 
 				LIMIT 7";
-	}else{
-
-		$columns = array(		
-			'id'			=> 'id_occupation',
-			'code'			=> 'code_job_position',
-			'name'			=> 'name_job_position',
-			'link_frag_u'	=> 'ocupacion-detalle/',
-			'link_frag_d'	=> '/?code_job_position='
-		);
-
-		$sql = "SELECT {$columns['id']}, {$columns['name']}, {$columns['code']} 
-				from cl_job_positions 
-				WHERE lower({$columns['name']}) LIKE '%".$search."%' and digital = false
-				ORDER BY {$columns['name']} ASC 
-				LIMIT 10 ";
 	}
 	
     $results = $wpdb->get_results($sql, ARRAY_A);
@@ -863,6 +852,7 @@ function ajax_home_sub_search(){
 	        $search_arr[] = array(
 	        	"id" 			=> $result[$columns['id']], 
 	        	"name" 			=> $result[$columns['name']],
+	        	"name_url" 		=> $result['post_name'],
 	        	"code"			=> $result[$columns['code']],
 	        	"link_frag_u" 	=> $columns['link_frag_u'],
 	        	"link_frag_d" 	=> $columns['link_frag_d']
@@ -895,8 +885,10 @@ function ajax_home_digital_search(){
 			'name'			=> 'name_job_position'
 		);
 
-		$sql = "SELECT {$columns['id']}, {$columns['name']}, {$columns['code']} 
+		$sql = "SELECT {$columns['id']}, {$columns['name']}, {$columns['code']} , post_name
 				from cl_job_positions 
+				inner join wp_postmeta  on (wp_postmeta.meta_value = {$columns['id']}::text)
+				inner join wp_posts on (wp_posts.ID = wp_postmeta.post_id)
 				WHERE lower({$columns['name']}) LIKE '%".$search."%' 
 				ORDER BY {$columns['name']} ASC 
 				LIMIT 7";
@@ -912,6 +904,7 @@ function ajax_home_digital_search(){
 
 	        $search_arr[] = array(
 	        	"id" 			=> $result[$columns['id']], 
+	        	"name_url"		=> $result['post_name'],
 	        	"name" 			=> $result[$columns['name']],
 	        	"code"			=> $result[$columns['code']]
 	        );

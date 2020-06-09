@@ -413,7 +413,73 @@
 							</div>
 
 							<?php endif;?>	
-						<?php endif;?>		   
+						<?php endif;?>		
+
+				<?php
+					//dificultades para llenar vacantes
+					$results_abilities = $wpdb->get_results("SELECT data, status from cl_indicators where status = 1 and id_indicator_type = 65 limit 1");	
+
+					if( $results_abilities ) : 
+
+						$value_abilities = array();
+
+						$title_abilities = array();
+
+						$name_abilities = array();
+
+						$occupations_abilities = json_decode($results_abilities[0]->data, true);
+						
+						$i=0;
+
+						foreach($occupations_abilities as $occupation){
+							
+							if( $occupation['data']['occupation'] == $title_ocupacion ){
+
+							
+								$value_abilities[$i] = $occupation['data']['value'];
+								$title_abilities[$i] = $occupation['data']['title'];
+								$name_abilities[$i] = $occupation['data']['name'];
+
+								$i++;
+
+							}	
+						}
+
+						if ( !empty( $title_abilities ) ):
+
+				?>
+							<div class="col-12">
+				                <div class="bloque-cabecera">
+				                    <div class="linea"><i class="iconcl-ocupacion"></i></div>
+				                    <h2>Conocimientos mas requeridos</h2>
+				                    <p>Conocimientos con mayor numero de vacantes a nivel nacional</p>
+				                </div>
+				            </div>    
+				            <div class="col-12 col-lg-8 offset-lg-2">
+				                <div class="bloque-barra">
+				                    <div class="bloque-progress">
+				                 
+				                        <div class="progress">
+				                            <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><?php echo $name_abilities[0]; ?></div>
+				                        </div>
+				                    </div>
+				                    <div class="bloque-progress">
+				                       
+				                        <div class="progress">
+				                            <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><?php echo $name_abilities[1]; ?></div>
+				                        </div>
+				                    </div>
+				                    <div class="bloque-progress">
+				                      
+				                        <div class="progress">
+				                            <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><?php echo $name_abilities[2]; ?></div>
+				                        </div>
+				                    </div>
+				                  			                   
+				                </div>
+				            </div>
+			        	<?php endif;?>
+			        <?php endif;?>   
 
 
 				<!-- Mobile -->

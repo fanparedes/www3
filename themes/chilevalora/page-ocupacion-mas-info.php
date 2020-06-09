@@ -16,7 +16,7 @@
     
 
     $job_position = array_shift($wpdb->get_results("
-                                        SELECT digital, name_job_position 
+                                        SELECT digital 
                                         FROM cl_job_positions 
                                         WHERE code_job_position = '" . $code_job_position . "' "));
 
@@ -61,46 +61,28 @@
     	?>
     			<div class="bloque-titular">
 			        <div class="container">
-                    <?php if (isset($code_job_position) && $job_position->digital == 't'  ): ?>
-                        <h1><?php echo $job_position->name_job_position; ?></h1>
-                    <?php else : ?>
 			            <h1><?php echo $rs_ocupacion[0]->name_occupation; ?></h1>
-                        <?php endif ?>
-                        
 			        </div>
 			    </div>
     			<!-- BLOQUE TABS -->
 			    <div class="bloque-tabs">
 			        <div class="container">
 			            <div class="d-none d-sm-block">
-                            <ul class="nav nav-tabs">
-                            <?php if( isset($code_job_position) && $job_position->digital == 't' ): ?>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="<?php echo get_site_url().'/ocupacion-detalle/puesto-de-trabajo/?code_job_position='.$code_job_position.'&id_occupation='.$id_occupation; ?>">Resumen</a>
-                                </li>
-                            <?php else : ?>
-                                <li class="nav-item">
-                                    <?php 
-                                    $resumenUrl = get_site_url() . '/ocupacion-detalle/' . $id_occupation; ?>
-                                    
-                                    <a class="nav-link " href="
-                                    <?php echo isset( $code_job_position ) ? $resumenUrl . '?code_job_position=' . $code_job_position : $resumenUrl; ?>">Resumen</a>
-                                </li>
-                            <?php endif; ?>
-                                <li class="nav-item">
-                                    <?php 
-                                    $masInformacionUrl =  get_site_url() . '/ocupacion-mas-info/'. $id_occupation; ?>
-                                    <a class="nav-link active" href="
-                                    <?php echo isset($code_job_position) ? $masInformacionUrl . '?code_job_position='.$code_job_position : $masInformacionUrl; ?>">Más información</a>
-                                </li>
-
-                                <?php if( isset($code_job_position) && $job_position->digital == 't' ): ?>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="<?php echo get_site_url().'/ocupacion-conocimiento/'.$id_occupation.'?code_job_position='.$code_job_position; ?>">Conocimiento</a>
-                                </li>
+			                <ul class="nav nav-tabs">
+			                    <li class="nav-item">
+			                        <a class="nav-link" href="<?php echo get_site_url().'/ocupacion-detalle/'.$id_occupation.'?code_job_position='.$code_job_position; ?>">Resumen</a>
+			                    </li>
+			                    <li class="nav-item">
+			                        <a class="nav-link active" href="<?php echo get_site_url().'/ocupacion-mas-info/'.$id_occupation.'?code_job_position='.$code_job_position; ?>">Más información</a>
+			                    </li>
+                                
+                                <?php if( $job_position->digital == 't' ): ?>
+			                    <li class="nav-item">
+			                        <a class="nav-link" href="<?php echo get_site_url().'/ocupacion-habilidades/'.$id_occupation.'?code_job_position='.$code_job_position; ?>">Habilidades</a>
+			                    </li>
                                 <?php endif; ?>
-                            </ul>
-                        </div>
+			                </ul>
+			            </div>
 			            <div class="dropdown d-block d-sm-none">
 			                <a class="btn dropdown-toggle" href="#dropdown-toggle" role="button" id="dropdownMenuTabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			                    Resumen
@@ -382,18 +364,13 @@
             <!-- FIN BLOQUE GRAFICA -->
             <!-- BLOQUE GRAFICA -->
             <?php
-
-
-
-                 //$graphics_10 = file_get_contents('http://chilevalora.dev.cl/wp-json/wp/v2/show_state_grafico/10', FILE_USE_INCLUDE_PATH);
-                $graphics_10 = 2;
-                //var_dump($graphics_10);die;
-
-               if($graphics_10=='2'){
+                $graphics_10 = file_get_contents(get_site_url().'/wp-json/wp/v2/show_state_grafico/10');
+                
+                if($graphics_10=='2'){
             ?>
                     <div class="col-12">
                         <div class="bloque-grafica">
-                            <h2>Crecimiento de ocupados</h2>
+                            <h2>Evolución del número de trabajadores</h2>
                             <div class="grafica">
                                 <script>
                                     document.addEventListener('DOMContentLoaded', function () {
@@ -413,10 +390,10 @@
 
                                             var myChart2 = Highcharts.chart('chartdiv2', {
                                                 title: {
-                                                    text: 'Demanda laboral de '+data[0].name_occupation
+                                                    text: 'Ocupados en  '+data[0].name_occupation
                                                 },
                                                 subtitle: {
-                                                    //text: 'Fuente: Gobierno de Chile'
+                                                    text: 'DestinoEmpleo en base a Casen 2015 y 2017'
                                                 },
                                                
                                                 xAxis: {
@@ -425,7 +402,7 @@
                                                         text: 'Años'
                                                     }
                                                 },
-                                                 yAxis: {
+                                                yAxis: {
                                                     type: 'logarithmic',
                                                     minorTickInterval: 0.1,
                                                     accessibility: {
@@ -472,9 +449,9 @@
                                                 },
                                                 tooltip: {
                                                     headerFormat: '<b>{series.name}</b><br />',
-                                                    pointFormat: 'x = {point.x}, y = {point.y}'
+                                                    //pointFormat: 'x = {point.x}, y = {point.y}'
                                                 },
-                                                           plotOptions: {
+                                                plotOptions: {
                                                     series: {
                                                         label: {
                                                             connectorAllowed: false
@@ -482,12 +459,11 @@
                                                         pointStart: 0
                                                     }
                                                 },
-
                                                 series: [{
                                                     data: data_ocupacion,
                                                     color: '#7fbeda',
-                                                   // pointStart: data_ejeX[0],
-                                                    name: 'Tasa de crecimiento de ocupados'
+                                                    //pointStart: data_ejeX[0],
+                                                    name: 'Número de trabajadores en la ocupación'
                                                 }]
                                             });
                                         });
@@ -665,17 +641,22 @@
             <!-- FIN BLOQUE GRAFICA -->
             <!-- BLOQUE GRAFICA -->
             <?php
-                //$graphics_9 = file_get_contents(get_site_url().'/wp-json/wp/v2/show_state_grafico/9');
-                $graphics_9 = 2;
-                                
+                $fuente     =  $wpdb->get_results("SELECT MAX(ano) FROM cl_busy_casen");
+                $fuente_max = isset($fuente[0]->max) && $fuente[0]->max!='' ? $fuente[0]->max : '';
+
+                $graphics_9 = file_get_contents(get_site_url().'/wp-json/wp/v2/show_state_grafico/9');
                 if($graphics_9=='2'){
             ?>
                     <div class="col-12">
                         <div class="bloque-grafica">
-                            <h2>Participación en distintos sectores</h2>
+                            <h2>Presencia de la ocupación en los diferentes sectores productivos</h2>
                             <div class="grafica">
                                 <script>
                                     document.addEventListener('DOMContentLoaded', function () {
+                                            Highcharts.setOptions({
+                                                colors: ['#283E56', '#B8366B', '#F1C561', '#F16E4A', '#47617E', '#EE93B8', '#F8D37E', '#F78769', '#6283A7', '#8A4D66', '#E3C889', '#C85F43']
+                                            });
+
                                             Highcharts.getJSON('<?php echo get_site_url(); ?>/wp-json/wp/v2/participacion_sector/<?php echo $id_occupation; ?>', function (data) {
 
                                             var points = [],
@@ -737,9 +718,9 @@
                                                     regionI = regionI + 1;
                                                 }
                                             }
-
+                                            
                                             //console.log(points);
-                                             Highcharts.chart('chartdiv5', {
+                                            Highcharts.chart('chartdiv5', {
                                                 series: [{
                                                     type: 'treemap',
                                                     drillUpButton: {
@@ -759,7 +740,8 @@
                                                         },
                                                         borderWidth: 3
                                                     }],
-                                                     colors: ['#283E56', '#B8366B', '#F1C561', '#F16E4A'],
+                                                    colors: ['#283E56', '#B8366B', '#F1C561', '#F16E4A'],
+
                                                     name: '% de participación',
                                                     //turboThreshold: 0,
                                                     data: points
@@ -818,11 +800,11 @@
                                                         text: 'Sectores'
                                                     }
                                                 },
-                                                subtitle: {
-                                                 //   text: 'Fuente: Gobierno de Chile'
-                                                },
                                                 title: {
-                                                    text: 'Participación en distintos sectores'
+                                                    text: 'Distribución de la ocupación por sector productivo'
+                                                },
+                                                subtitle: {
+                                                    text: 'DestinoEmpleo en base a Casen 2017'
                                                 },
                                                 tooltip: {
                                                     valueDecimals: 2,

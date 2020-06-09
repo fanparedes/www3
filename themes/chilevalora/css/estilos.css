@@ -1046,6 +1046,7 @@ footer .social a:hover {
 .bloque-carousel-home {
     position: relative;
     width: 100%;
+    height: 550px !important; 
     background: url(../images/imagen-home.jpg) no-repeat center top #304c70;
     background-size: cover;
     color: #304c70;
@@ -4221,3 +4222,9 @@ and (max-width: 768px) {
     }
 }
     .text-limit-footer { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; text-align: justify; }
+
+.selector-item{
+    background-color: rgb(245, 245, 246) !important;
+    position: relative !important;
+
+}

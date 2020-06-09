@@ -55,11 +55,16 @@ get_header();?>
 					$titulo_busqueda = $rs_ocupacion[$i]->name_job_position;
 				    $id_ocup = $rs_ocupacion[$i]->id_occupation;
 					
-					$sql_descrip = "SELECT id_occupation, name_occupation, description FROM cl_occupations WHERE id_occupation= ".$id_ocup."";
+					$sql_descrip = "SELECT id_occupation, name_occupation, description, post_name FROM cl_occupations 
+					inner join wp_postmeta  on (wp_postmeta.meta_value = cl_occupations.id_occupation::text)
+  					inner join wp_posts on (wp_posts.ID = wp_postmeta.post_id)
+					WHERE id_occupation= ".$id_ocup." ORDER BY ID ASC";
+
 				    $rs_descrip  = $wpdb->get_results($sql_descrip);
 
 				 	$name_occupation = $rs_descrip[0]->description;
-				  
+				 	$name_link = $rs_descrip[0]->post_name;
+				
 				 	//  var_dump($rs_ocupacion);
 				   	// 	exit();
 					$url = get_site_url();
@@ -71,8 +76,8 @@ get_header();?>
 			     ?>
 					<div class="resultados-busqueda">
 			                <div class="resultado" >
-			                    <p><a href="<?php  echo  $link_job.$id_ocup.'/?code_job_position='.$code_job;?>"><?php echo $titulo_busqueda; ?></a></p>
-								<p><a href="<?php  echo $link_job.$id_ocup.'/?code_job_position='.$code_job ;?>" class="titular"><?php echo $titulo_busqueda;?></a></p>
+			                    <p><a href="<?php  echo  $link_job.$name_link.'/?code_job_position='.$code_job;?>"><?php echo $titulo_busqueda; ?></a></p>
+								<p><a href="<?php  echo $link_job.$name_link.'/?code_job_position='.$code_job ;?>" class="titular"><?php echo $titulo_busqueda;?></a></p>
 			                   	<p style="text-align: justify;"><?php echo $name_occupation;?></p>
 			                </div>
 			            </div><hr/>		
@@ -94,8 +99,10 @@ get_header();?>
 			while ( have_posts() ) : ?>
 				<?php 
 					$name = get_the_title();
-					$occu_id = $wpdb->get_results("SELECT id_occupation o_id FROM cl_occupations
-					WHERE name_occupation = '".$name."'");
+					$occu_id = $wpdb->get_results("SELECT id_occupation o_id, post_name  FROM cl_occupations
+					inner join wp_postmeta  on (wp_postmeta.meta_value = cl_occupations.id_occupation::text)
+  					inner join wp_posts on (wp_posts.ID = wp_postmeta.post_id)
+					WHERE name_occupation = '".$name."'ORDER BY ID ASC");
 					
 					$region_id = $wpdb->get_results("SELECT id_region r_id FROM cl_regions
 					WHERE name_region = '".$name."'");
@@ -108,13 +115,13 @@ get_header();?>
 					$shortext =  get_the_excerpt();
 					$url = get_site_url();
 
-					$occu_link = $occu_id[0]->o_id;
+					$occu_link = $occu_id[0]->post_name;
 					$reg_link = $region_id[0]->r_id;
 					$sec_link = $sector_id[0]->s_id; 
 				
 					if ($post_type == 'detalle_ocupacion') {
 						$the_title = 'Detalle Ocupacion';
-						$link_title =	$url.'/ocupacion-detalle/'.$occu_link;
+						$link_title =	$url.'/detalle-ocupacion/'.$occu_link;
 						$link = $url.'/ocupaciones/';
 					
 					}elseif ($post_type == 'regiones_detalle') {

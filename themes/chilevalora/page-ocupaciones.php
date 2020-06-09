@@ -308,6 +308,8 @@
                       ]
                     })
                   })
+
+                  jQuery('p:contains("Profesiones no digitales")').click();;
                 </script>
             </div>
             <!-- FIN BLOQUE MAPA -->
@@ -480,40 +482,68 @@
                 $value   = number_format($array[0]['data']['value'], 1, ',', '.');
                 $value_u = number_format($array[1]['data']['value'], 1, ',', '.');
                 $value_d = number_format($array[2]['data']['value'], 1, ',', '.');
+
+                $fuente_max = isset($fuente[0]->max) && $fuente[0]->max!='' ? $fuente[0]->max : '';
+
+                $sql_contratos_indefinidos = "
+                    select
+                        oc.id_occupation,
+                        wp_postmeta.post_id,
+                        oc.name_occupation,
+                        ((sum(byc.occ_indefinite_contracts::float)*100)/(select sum(byc1.occ_indefinite_contracts::float) from cl_busy_casen byc1 where byc1.ano::int in (select max(byc2.ano::int) from cl_busy_casen byc2))) as indefinite_contracts
+                    from cl_busy_casen byc
+                    inner join cl_occupations oc on (byc.id_occupation = oc.id_occupation)
+                    inner join wp_postmeta on (oc.id_occupation::int = wp_postmeta.meta_value::int)
+                    inner join wp_posts on (wp_posts.ID= wp_postmeta.post_id) and (wp_posts.post_type = 'detalle_ocupacion') and wp_postmeta.meta_key = 'id'
+                    where byc.ano::int in (select max(byc3.ano::int) from cl_busy_casen byc3)
+                    group by oc.id_occupation, wp_postmeta.post_id, oc.name_occupation
+                    order by indefinite_contracts desc
+                    limit 10
+                ";
+
+                $rs_contratos_indefinidos = $wpdb->get_results($sql_contratos_indefinidos);
+
+                
+
         ?>  
                 <div class="col-12">
                     <div class="bloque-cabecera">
                         <div class="linea"><i class="iconcl-contratos"></i></div>
                         <h2>Contratos Indefinidos</h2>
                         <p>Ocupaciones con mayor porcentaje de contratos indefinidos a nivel nacional</p>
-                        <p>Fuente de datos: CASEN <?php echo($fuente[0]->max); ?></p>
+                        <!--
+                            POR FAVOR REALIZAR SANITIZACION A VARIABLES, ESTO PRODUCE ERRORES EN CASO DE NO VENIR EL DATO, Saludos!!!
+                            <p>Fuente de datos: CASEN <?php echo($fuente[0]->max); ?></p> 
+                        -->
+                        <p>Fuente de datos: CASEN <?php echo $fuente_max; ?></p> 
                     </div>
                 </div>
-
                 <div class="col-12 col-lg-8 offset-lg-2">
                     <div class="bloque-barra">
-                        <div class="bloque-progress">
-                            <p><?php echo $array[0]["data"]["title"]; ?></p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $array[0]['data']['value'];?>" aria-valuemin="0" aria-valuemax="100"><?php echo $value;?>%</div>
-                            </div>
-                        <a href="<?php echo get_site_url().'/ocupacion-detalle/'.$code; ?>" class="icon-plus"><i class="fal fa-plus"></i></a>
-                    </div>
-                    <div class="bloque-progress">
-                        <p><?php echo $array[1]["data"]["title"]; ?></p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $array[1]['data']['value'];?>" aria-valuemin="0" aria-valuemax="100"><?php echo $value_u;?>%</div>
-                        </div>
-                        <a href="<?php echo get_site_url().'/ocupacion-detalle/'.$code_u; ?>" class="icon-plus"><i class="fal fa-plus"></i></a>
-                    </div>
-                    <div class="bloque-progress">
-                        <p><?php echo $array[2]["data"]["title"]; ?></p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $array[2]['data']['value'];?>" aria-valuemin="0" aria-valuemax="100"><?php echo $value_d;?>%</div>
-                        </div>
-                        <a href="<?php echo get_site_url().'/ocupacion-detalle/'.$code_d; ?>" class="icon-plus"><i class="fal fa-plus"></i></a>
-                        </div>
-                    </div>
+                        <?php 
+                            if(is_array($rs_contratos_indefinidos) && count($rs_contratos_indefinidos)>0){
+                            foreach ($rs_contratos_indefinidos as $row) {
+                                    $id_occupation          = isset($row->id_occupation)        && $row->id_occupation!=''          ? $row->id_occupation : '';
+                                    $post_id                = isset($row->post_id)              && $row->post_id!=''                ? $row->post_id : '';
+                                    $name_occupation        = isset($row->name_occupation)      && $row->name_occupation!=''        ? $row->name_occupation : '';
+                                    $indefinite_contracts   = isset($row->indefinite_contracts) && $row->indefinite_contracts!=''   ? number_format($row->indefinite_contracts, 2) : '';
+
+                                    $get_permalink      = get_permalink($post_id);
+                                    $uri_occupation     = $get_permalink.'?code_job_position=';
+
+                                ?>
+                                    <div class="bloque-progress">
+                                        <p><?php echo $name_occupation; ?></p>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $indefinite_contracts;?>" aria-valuemin="0" aria-valuemax="100"><?php echo $indefinite_contracts;?>%</div>
+                                        </div>
+                                        <a href="<?php echo get_site_url().'/ocupacion-detalle/'.$code; ?>" class="icon-plus"><i class="fal fa-plus"></i></a>
+                                        <a href="<?php echo $uri_occupation; ?>" class="icon-plus"><i class="fal fa-plus"></i></a>   
+                                    </div>
+                                <?php
+                                }
+                            }
+                        ?>
                 </div>
             <?php endif;?>
         <!-- Termino Indicador -->
@@ -538,6 +568,27 @@
                 $value   = number_format($array[0]['data']['value'], 1, ',', '.');
                 $value_u = number_format($array[1]['data']['value'], 1, ',', '.');
                 $value_d = number_format($array[2]['data']['value'], 1, ',', '.');
+
+                $fuente_max = isset($fuente[0]->max) && $fuente[0]->max!='' ? $fuente[0]->max : '';
+
+                $sql_contratos_indefinidos = "
+                    select
+                        oc.id_occupation,
+                        wp_postmeta.post_id,
+                        oc.name_occupation,
+                        ((sum(byc.number_occupied_female::float)*100)/(select sum(byc1.number_occupied_female::float) from cl_busy_casen byc1 where byc1.ano::int in (select max(byc2.ano::int) from cl_busy_casen byc2))) as indefinite_contracts
+                    from cl_busy_casen byc
+                    inner join cl_occupations oc on (byc.id_occupation = oc.id_occupation)
+                    inner join wp_postmeta on (oc.id_occupation::int = wp_postmeta.meta_value::int)
+                    inner join wp_posts on (wp_posts.ID= wp_postmeta.post_id) and (wp_posts.post_type = 'detalle_ocupacion') and wp_postmeta.meta_key = 'id'
+                    where byc.ano::int in (select max(byc3.ano::int) from cl_busy_casen byc3)
+                    group by oc.id_occupation, wp_postmeta.post_id, oc.name_occupation
+                    order by indefinite_contracts desc
+                    limit 10
+                ";
+
+                $rs_contratos_indefinidos = $wpdb->get_results($sql_contratos_indefinidos);
+
         ?>
             
                 <div class="col-12">
@@ -545,33 +596,39 @@
                         <div class="linea"><i class="iconcl-mujeres"></i></div>
                         <h2>Mujeres</h2>
                         <p>Ocupaciones con mayor porcentaje de mujeres en todo el territorio nacional</p>
-                        <p>Fuente de datos: CASEN <?php echo($fuente[0]->max); ?></p>
+                        <p>Fuente de datos: CASEN <?php echo $fuente_max; ?></p>
                     </div>
                 </div>
 
                 <div class="col-12 col-lg-8 offset-lg-2">
                     <div class="bloque-barra">
                         <div class="bloque-progress">
-                            <p><?php echo $array[0]["data"]["title"]; ?></p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $array[0]['data']['value']; ?>" aria-valuemin="0" aria-valuemax="100"><?php echo $value; ?>%</div>
-                            </div>
-                            <a href="<?php echo get_site_url().'/ocupacion-detalle/'.$code; ?>" class="icon-plus"><i class="fal fa-plus"></i></a>
+                        <?php 
+                            if(is_array($rs_contratos_indefinidos) && count($rs_contratos_indefinidos)>0){
+                            foreach ($rs_contratos_indefinidos as $row) {
+                                    $id_occupation          = isset($row->id_occupation)        && $row->id_occupation!=''          ? $row->id_occupation : '';
+                                    $post_id                = isset($row->post_id)              && $row->post_id!=''                ? $row->post_id : '';
+                                    $name_occupation        = isset($row->name_occupation)      && $row->name_occupation!=''        ? $row->name_occupation : '';
+                                    $indefinite_contracts   = isset($row->indefinite_contracts) && $row->indefinite_contracts!=''   ? number_format($row->indefinite_contracts, 2) : '';
+
+                                    $get_permalink      = get_permalink($post_id);
+                                    $uri_occupation     = $get_permalink.'?code_job_position=';
+
+                                ?>
+                                    <div class="bloque-progress">
+                                        <p><?php echo $name_occupation; ?></p>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $indefinite_contracts;?>" aria-valuemin="0" aria-valuemax="100"><?php echo $indefinite_contracts;?>%</div>
+                                        </div>
+                                        <a href="<?php echo get_site_url().'/ocupacion-detalle/'.$code; ?>" class="icon-plus"><i class="fal fa-plus"></i></a>
+                                        <a href="<?php echo $uri_occupation; ?>" class="icon-plus"><i class="fal fa-plus"></i></a>   
+                                    </div>
+                                <?php
+                                }
+                            }
+                        ?>
                         </div>
-                        <div class="bloque-progress">
-                            <p><?php echo $array[1]["data"]["title"]; ?></p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $array[1]['data']['value']; ?>" aria-valuemin="0" aria-valuemax="100"><?php echo $value_u; ?>%</div>
-                            </div>
-                            <a href="<?php echo get_site_url().'/ocupacion-detalle/'.$code_u; ?>" class="icon-plus"><i class="fal fa-plus"></i></a>
-                        </div>
-                        <div class="bloque-progress">
-                            <p><?php echo $array[2]["data"]["title"]; ?></p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $array[2]['data']['value']; ?>" aria-valuemin="0" aria-valuemax="100"><?php echo $value_d; ?>%</div>
-                            </div>
-                            <a href="<?php echo get_site_url().'/ocupacion-detalle/'.$code_d; ?>" class="icon-plus"><i class="fal fa-plus"></i></a>
-                        </div>
+                        
                     </div>
                 </div>
             <?php endif;?>
